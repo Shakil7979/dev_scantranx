@@ -57,7 +57,7 @@
             <div class="menu">
                 <ul>
                     <li><a class="active" href="{{route('admin.dashboard')}}"><img src="assets/images/sidebar/Search.png" alt="">Jobs</a></li>
-                    <li><a href="blog-list.html"><img src="assets/images/sidebar/Paper.png " alt="">Blog</a></li>
+                    <li><a href="{{route('blog.show')}}"><img src="assets/images/sidebar/Paper.png " alt="">Blog</a></li>
                     <li><a href="faq.html"><img src="assets/images/sidebar/Danger Circle.png" alt="">FAQ's</a></li>
                     <li><a href="testimonial.html"><img src="assets/images/sidebar/Star.png" alt="">Testimonial</a></li> 
                     <li><a href="contact-form.html"><img src="assets/images/sidebar/Call.png" alt="">Contact form</a></li>

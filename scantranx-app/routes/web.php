@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,10 @@ Route::prefix('admin')->group(function () {
     
     // Route for job details page
     Route::get('/jobs/{id}', [JobController::class, 'show'])->name('job.show');
+
+    // Blog Post 
+    Route::get('/blog/show', [BlogController::class, 'show'])->name('blog.show'); 
+    Route::post('/blog/post', [BlogController::class, 'post'])->name('blog.post');
 
 
 
