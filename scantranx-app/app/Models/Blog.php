@@ -9,12 +9,7 @@ class Blog extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title',
-        'category',
-        'description',
-        'images',
-    ];
+    protected $fillable = ['title', 'category', 'description','image_path'];
 
     // Accessor to decode the images JSON
     public function getImagesAttribute($value)

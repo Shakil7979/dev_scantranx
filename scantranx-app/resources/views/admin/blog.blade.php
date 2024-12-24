@@ -21,76 +21,44 @@
         </div>
 
         <div class="blog_details_area"> 
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="single_blog_item">
-                        <div class="blog_single_img">
-                            <img src="{{asset('admin/assets/images/blog/1.png')}}" alt="">
-                            <a href="#">Business</a>
-                            <div class="job_right_btn"> 
-                                <button class="job_edit_delete_btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                                <div class="job_edit_delete_box">
-                                    <ul>
-                                        <li><button><img src="assets/images/job/Edit.png" alt=""><span>Edit</span></button></li>
-                                        <li><button><img src="assets/images/job/Delete.png" alt=""><span>Delete</span></button></li>
-                                    </ul>
+            <div class="row g-4">  
+                @foreach ($blogs as $blog)  
+                    
+                    <div class="col-md-4">
+                        <div class="single_blog_item">
+                            <div class="blog_single_img">
+                                <img src="{{ asset($blog->image_path) }}" alt="Blog Image">
+                                <a href="#">{{ $blog->category }}</a>
+                                <div class="job_right_btn"> 
+                                    <button class="job_edit_delete_btn">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+                                    <div class="job_edit_delete_box">
+                                        <ul>
+                                            <li>
+                                                <button>
+                                                    <img src="{{ asset('admin/assets/images/job/Edit.png') }}" alt="">
+                                                    <span>Edit</span>
+                                                </button>
+                                            </li>
+                                            <li>
+                                                <button>
+                                                    <img src="{{ asset('admin/assets/images/job/Delete.png') }}" alt="">
+                                                    <span>Delete</span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="blog_info">
-                            <span>21 Oct, 2024 - 5min Reading</span>
-                            <h3>How modern POS solutions streamline business operations.</h3>
-                            <p>Point-of-sale (POS) software is a comprehensive solution for your business that allows you to process payments, manage and collect customer information, update inventory, and build a loyal customer base. </p>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="single_blog_item">
-                        <div class="blog_single_img">
-                            <img src="{{asset('admin/assets/images/blog/2.png')}}" alt="">
-                            <a href="#">Retail</a>
-                            <div class="job_right_btn"> 
-                                <button class="job_edit_delete_btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                                <div class="job_edit_delete_box">
-                                    <ul>
-                                        <li><button><img src="assets/images/job/Edit.png" alt=""><span>Edit</span></button></li>
-                                        <li><button><img src="assets/images/job/Delete.png" alt=""><span>Delete</span></button></li>
-                                    </ul>
-                                </div>
+                            <div class="blog_info">
+                                <span>{{ $blog->created_at->format('d M, Y') }} - {{ $blog->created_at->diffForHumans() }}</span> 
+                                <h3>{{ $blog->title }}</h3>
+                                <p>{{ Str::limit($blog->description, 150, '...') }}</p>
                             </div>
                         </div>
-                        <div class="blog_info">
-                            <span>17 Aug, 2024 - 6min Reading</span>
-                            <h3>Cloud-Based POS Software for Retailers: A Complete Guide</h3>
-                            <p>Retailers are faced with a variety of challenges that can make it challenging to stay competitive. These challenges include managing inventory, hiring the right staff, and making sure your customers are happy.</p>
-                        </div>
-
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="single_blog_item">
-                        <div class="blog_single_img">
-                            <img src="{{asset('admin/assets/images/blog/3.png')}}" alt="">
-                            <a href="#">E-commerce</a>
-                            <div class="job_right_btn"> 
-                                <button class="job_edit_delete_btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>
-                                <div class="job_edit_delete_box">
-                                    <ul>
-                                        <li><button><img src="assets/images/job/Edit.png" alt=""><span>Edit</span></button></li>
-                                        <li><button><img src="assets/images/job/Delete.png" alt=""><span>Delete</span></button></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="blog_info">
-                            <span>17 Aug, 2024 - 6min Reading</span>
-                            <h3>Scantranx Named amongst the best eCommerce Companies in New Brunswick by Best Startup Canada.</h3>
-                            <p>We are thrilled to announce we have been featured in the Best Startup Canada Magazine as one of the top e-Commerce Companies in New Brunswick, Canada. </p>
-                        </div>
-
-                    </div>
-                </div>
+                @endforeach  
             </div>
         </div>
 
@@ -113,7 +81,7 @@
                         <div class="job_apply_file">
                             <div class="file-upload-wrapper">
                                 <label class="file-upload-box mb-0">
-                                    <input type="file" name="files[]" class="file-upload-input">
+                                    <input type="file" name="file" class="file-upload-input">
                                     <div class="upload-content">  
                                          <img src="{{asset('admin/assets/images/job/Upload.png')}}" alt="">
                                         <h5 class="mb-2">Upload Resume</h5> 
@@ -140,7 +108,8 @@
                             <textarea name="description" placeholder="Write detail description for blog" name="" id=""></textarea>
                         </div>  
                         <div class="btn_login">  
-                            <button type="button"  class="btn_2 free_demo_btn" id="blog_post_btn" onclick="_run(this)" data-el="fg" data-form="blog_post_form" data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" data-callback="blog_post_callback" data-btnid="blog_post_btn">Create Blog <i class="fa-solid fa-arrow-right"></i></button> 
+                            <button type="button"  class="btn_2 free_demo_btn" data-file='true' id="blog_post_btn" onclick="_run(this)" data-el="fg" data-form="blog_post_form" data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" data-callback="blog_post_callback" data-btnid="blog_post_btn">Create Blog <i class="fa-solid fa-arrow-right"></i></button> 
+ 
                         </div>
                     </div>
                 </form>
@@ -149,7 +118,7 @@
       </div>
     </div>
   </div>
-
+ 
 
 @endsection
 
@@ -171,6 +140,7 @@
                 $.validator("blog_post_form", data.errors);
             }
         }
+
 
     </script>
 

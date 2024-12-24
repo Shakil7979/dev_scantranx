@@ -12,20 +12,22 @@ use Illuminate\Support\Facades\Storage;
 class BlogController extends Controller
 {
     public function show()
-    {
-        return view('admin.blog');
+    {   
+        $blogs = Blog::all();  
+        return view('admin.blog', compact('blogs'));
     }
+
     public function post(Request $request)
-    { 
+    {
+
         // Validate the form input
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'category' => 'required|string',
             'description' => 'required|string',
-            'files' => 'required|array', // Validate that 'files' is an array
-            'files.*' => 'file|mimes:jpg,jpeg,png,gif|max:2048', // Validate individual files
+            'file' => 'required|file|mimes:jpg,jpeg,png,gif|max:2048', // Validate the single file
         ]);
-
+    
         // If validation fails, return errors
         if ($validator->fails()) {
             return response()->json([
@@ -34,31 +36,40 @@ class BlogController extends Controller
                 'message' => 'Validation failed',
             ]);
         }
-
+    
         try {
-            // Handle file uploads
-            $uploadedFiles = [];
-            if ($request->hasFile('files')) {
-                foreach ($request->file('files') as $file) {
-                    // Generate a random filename
-                    $filename = Str::random(20) . '.' . $file->getClientOriginalExtension();
+            // Handle the single file upload
+            $uploadedFile = null;
+            if ($request->hasFile('file')) {
+                $file = $request->file('file');
 
-                    // Store the file
-                    $path = $file->storeAs('uploads/blogs', $filename, 'public');
-
-                    // Save the file path
-                    $uploadedFiles[] = $path;
+                
+                // Generate a random 10-digit numeric filename
+                $filename = substr(str_shuffle('0123456789'), 0, 10) . '.' . $file->getClientOriginalExtension();
+    
+                // Define the target directory within the public path
+                $targetDirectory = public_path('admin/assets/images/blog/post');
+    
+                // Ensure the directory exists
+                if (!file_exists($targetDirectory)) {
+                    mkdir($targetDirectory, 0777, true);
                 }
-            }
-
+    
+                // Move the uploaded file to the target directory
+                $file->move($targetDirectory, $filename);
+    
+                // Save the file path relative to the public directory
+                $uploadedFile = 'admin/assets/images/blog/post/' . $filename;
+            } 
+    
             // Store the blog details in the database
             $blog = Blog::create([
                 'title' => $request->input('title'),
                 'category' => $request->input('category'),
                 'description' => $request->input('description'),
-                'images' => json_encode($uploadedFiles), // Store the images as JSON
+                'image_path' => $uploadedFile, // Store the single image path
             ]);
-
+    
             // Return a success response
             return response()->json([
                 'status' => true,
@@ -74,4 +85,5 @@ class BlogController extends Controller
             ]);
         }
     }
+    
 }
