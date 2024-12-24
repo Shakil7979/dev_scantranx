@@ -113,7 +113,7 @@
                         <div class="job_apply_file">
                             <div class="file-upload-wrapper">
                                 <label class="file-upload-box mb-0">
-                                    <input type="file" name="files[]" class="file-upload-input" multiple="">
+                                    <input type="file" name="files[]" class="file-upload-input">
                                     <div class="upload-content">  
                                          <img src="{{asset('admin/assets/images/job/Upload.png')}}" alt="">
                                         <h5 class="mb-2">Upload Resume</h5> 

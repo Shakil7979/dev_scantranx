@@ -72,7 +72,7 @@
                 <div class="header-title">
                     <a href="#" class="bars_icon"><i class="fas fa-bars"></i></a>
                     <div class="header_text_box"> 
-                        <h3>Good Morning, Aqib!</h3>
+                        <h3>Good Morning, Admin!</h3>
                         <p>Welcome back</p>
                     </div>
                 </div>
