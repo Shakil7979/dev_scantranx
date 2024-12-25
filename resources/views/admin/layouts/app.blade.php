@@ -46,6 +46,21 @@
 <!-- BEGIN: Body-->
 
 <body>
+@php 
+    use Carbon\Carbon;
+
+    // Retrieve the user's time zone from the session or default to UTC
+    $timezone = session('user_timezone', 'UTC');
+    $hour = Carbon::now($timezone)->hour;
+
+    if ($hour < 12) {
+        $greeting = "Good Morning";
+    } elseif ($hour < 18) {
+        $greeting = "Good Afternoon";
+    } else {
+        $greeting = "Good Evening";
+    }
+@endphp
 
     <!--Start main Area-->
     <section class="main-area">
@@ -56,14 +71,43 @@
             </div>
             <div class="menu">
                 <ul>
-                    <li><a class="active" href="{{route('admin.dashboard')}}"><img src="assets/images/sidebar/Search.png" alt="">Jobs</a></li>
-                    <li><a href="{{route('blog.show')}}"><img src="assets/images/sidebar/Paper.png " alt="">Blog</a></li>
-                    <li><a href="faq.html"><img src="assets/images/sidebar/Danger Circle.png" alt="">FAQ's</a></li>
-                    <li><a href="testimonial.html"><img src="assets/images/sidebar/Star.png" alt="">Testimonial</a></li> 
-                    <li><a href="contact-form.html"><img src="assets/images/sidebar/Call.png" alt="">Contact form</a></li>
-                    <li><a href="reseller.html"><img src="assets/images/sidebar/Profile.png" alt="">Reseller</a></li>
-                    <li><a href="download-e-book.html"><img src="assets/images/sidebar/Download.png" alt="">E-book download</a></li>
+                    <li>
+                        <a class="{{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                            <img src="assets/images/sidebar/Search.png" alt="">Jobs
+                        </a>
+                    </li>
+                    <li>
+                        <a class="{{ Route::currentRouteName() == 'blog.show' ? 'active' : '' }}" href="{{ route('blog.show') }}">
+                            <img src="assets/images/sidebar/Paper.png" alt="">Blog
+                        </a>
+                    </li>
+                    <li>
+                        <a href="faq.html">
+                            <img src="assets/images/sidebar/Danger Circle.png" alt="">FAQ's
+                        </a>
+                    </li>
+                    <li>
+                        <a href="testimonial.html">
+                            <img src="assets/images/sidebar/Star.png" alt="">Testimonial
+                        </a>
+                    </li>
+                    <li>
+                        <a href="contact-form.html">
+                            <img src="assets/images/sidebar/Call.png" alt="">Contact form
+                        </a>
+                    </li>
+                    <li>
+                        <a href="reseller.html">
+                            <img src="assets/images/sidebar/Profile.png" alt="">Reseller
+                        </a>
+                    </li>
+                    <li>
+                        <a href="download-e-book.html">
+                            <img src="assets/images/sidebar/Download.png" alt="">E-book download
+                        </a>
+                    </li>
                 </ul>
+                
             </div>
         </div>
         <div class="main-content-area">
@@ -72,7 +116,7 @@
                 <div class="header-title">
                     <a href="#" class="bars_icon"><i class="fas fa-bars"></i></a>
                     <div class="header_text_box"> 
-                        <h3>Good Morning, Admin!</h3>
+                        <h3>{{ $greeting }}, Admin!</h3>
                         <p>Welcome back</p>
                     </div>
                 </div>
@@ -136,6 +180,20 @@
     <!-- BEGIN: Page Vendor JS--> 
 
     @yield('script')
+
+    <script>
+        // Detect the user's time zone and send it to the backend
+        const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        fetch('/set-timezone', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: JSON.stringify({ timezone: userTimeZone })
+        });
+    </script>
+    
 
   
 </body>

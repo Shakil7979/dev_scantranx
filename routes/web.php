@@ -5,6 +5,15 @@ use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Http\Request;
+
+Route::post('/set-timezone', function (Request $request) {
+    $timezone = $request->input('timezone');
+    session(['user_timezone' => $timezone]);
+    return response()->json(['status' => 'success']);
+});
+
+
 // User Routes
 Route::get('/', [UserController::class, 'index'])->name('user.home');  // User homepage
 Route::get('/admin', function () {
