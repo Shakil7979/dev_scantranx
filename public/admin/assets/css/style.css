@@ -910,10 +910,15 @@ a:hover{
 
 .blog_single_img {
 	position: relative;
+	width: 100%;
+	height: 268px;
 }
 
 .blog_single_img img {
 	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	border-radius: 12px;
 }
 
 .blog_single_img .job_right_btn { 

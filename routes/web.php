@@ -32,6 +32,9 @@ Route::prefix('admin')->group(function () {
     // Blog Post 
     Route::get('/blog/show', [BlogController::class, 'show'])->name('blog.show'); 
     Route::post('/blog/post', [BlogController::class, 'post'])->name('blog.post');
+    Route::get('/blog/edit/show/{id}', [BlogController::class, 'edit_show'])->name('blog.edit.show');
+    Route::post('/blog/update', [BlogController::class, 'update'])->name('blog.update');
+    Route::delete('/blog/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
 
 
 
