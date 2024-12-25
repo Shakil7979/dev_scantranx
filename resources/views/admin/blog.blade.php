@@ -254,7 +254,7 @@
                     <i class="fas fa-times remove-file"></i>
                     <div class="upload-progress"></div>
                 </div>`;
-            $('.file-list').html(imagePathSet); 
+            // $('.file-list').html(imagePathSet); 
             $('.title_update').val(blogData.title); 
             $('.file_update').val(null);  
             $('.file_update').data('file-path', blogData.image_path); 
