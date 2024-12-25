@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\JobController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,13 @@ Route::prefix('admin')->group(function () {
     Route::get('/blog/edit/show/{id}', [BlogController::class, 'edit_show'])->name('blog.edit.show');
     Route::post('/blog/update', [BlogController::class, 'update'])->name('blog.update');
     Route::delete('/blog/{id}', [BlogController::class, 'destroy'])->name('blog.destroy');
+
+    // FAQ Route 
+    Route::get('/faq/show', [FaqController::class, 'show'])->name('faq.show'); 
+    Route::post('/faq/store', [FaqController::class, 'store'])->name('faq.store'); 
+    Route::get('/faq/edit/{id}', [FaqController::class, 'edit_show'])->name('faq.edit.show'); 
+    Route::post('/faq/update', [FaqController::class, 'update'])->name('faq.update'); 
+    Route::delete('/faq/{id}', [FaqController::class, 'destroy'])->name('faq.destroy');
 
 
 

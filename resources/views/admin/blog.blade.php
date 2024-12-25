@@ -277,9 +277,9 @@
         });
 
         // When the "Delete" button in the modal is clicked
-        $(document).on('click', '#confirmDeleteButton', function () {
-            if (deleteUrl) {
-                $.ajax({
+        $(document).on('click', '#confirmDeleteButton', function () { 
+            if (deleteUrl) { 
+                $.ajax({ 
                     url: deleteUrl,  // Use the dynamic URL
                     method: 'DELETE',
                     headers: {

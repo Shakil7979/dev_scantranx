@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="faq.html">
+                        <a class="{{ Route::currentRouteName() == 'faq.show' ? 'active' : '' }}" href="{{ route('faq.show') }}">
                             <img src="assets/images/sidebar/Danger Circle.png" alt="">FAQ's
                         </a>
                     </li>
