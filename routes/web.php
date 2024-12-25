@@ -3,6 +3,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,9 @@ Route::prefix('admin')->group(function () {
     Route::get('/faq/edit/{id}', [FaqController::class, 'edit_show'])->name('faq.edit.show'); 
     Route::post('/faq/update', [FaqController::class, 'update'])->name('faq.update'); 
     Route::delete('/faq/{id}', [FaqController::class, 'destroy'])->name('faq.destroy');
+
+    // Testimonial 
+    Route::get('/testimonial/show', [TestimonialController::class, 'show'])->name('testimonial.show'); 
 
 
 

@@ -87,7 +87,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="testimonial.html">
+                        <a class="{{ Route::currentRouteName() == 'testimonial.show' ? 'active' : '' }}" href="{{ route('testimonial.show') }}">
                             <img src="assets/images/sidebar/Star.png" alt="">Testimonial
                         </a>
                     </li>
