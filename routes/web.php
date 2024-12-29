@@ -1,9 +1,13 @@
 <?php
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BlogController;
+use App\Http\Controllers\Admin\ContactFormController;
+use App\Http\Controllers\Admin\EbookDownloadController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\JobController;
+use App\Http\Controllers\Admin\ResellerController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +32,10 @@ Route::get('/quickbook-disconnect', [UserController::class, 'quickbook_disconnec
 Route::get('/quickbook', [UserController::class, 'quickbook'])->name('user.quickbook'); 
 Route::get('/reseller', [UserController::class, 'reseller'])->name('user.reseller'); 
 Route::get('/stripe', [UserController::class, 'stripe'])->name('user.stripe'); 
+
+// Website 
+
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
 
 
 
@@ -72,6 +80,15 @@ Route::prefix('admin')->group(function () {
     Route::get('/testimonials/edit/{id}', [TestimonialController::class, 'edit_show'])->name('testimonials.edit.show'); 
     Route::post('/testimonials/update', [TestimonialController::class, 'update'])->name('testimonials.update');
     Route::delete('/testimonials/{id}', [TestimonialController::class, 'destroy'])->name('testimonials.destroy'); 
+
+    // Contact Route 
+    Route::get('/contact/show', [ContactFormController::class, 'show'])->name('contact.show'); 
+
+    // Reseller Route 
+    Route::get('/reseller/show', [ResellerController::class, 'show'])->name('reseller.show'); 
+
+    // E-book Download Route 
+    Route::get('/ebook-download/show', [EbookDownloadController::class, 'show'])->name('ebook.download.show'); 
 
 
 

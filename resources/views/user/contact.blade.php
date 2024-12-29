@@ -53,34 +53,36 @@
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="contact_form">
-                        <form action="#">
+                        <form action="{{ route('contact.store') }}" id="contact_form" method="POST">
+                            @csrf
                             <div class="login_form"> 
                                 <div class="form_group">
-                                    <input type="text" placeholder="Account name">
+                                    <input type="text" name="account_name" placeholder="Account name" required>
                                     <i class="fa-regular fa-user"></i> 
                                 </div>  
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form_group">
-                                            <input type="text" placeholder="Phone number">
+                                            <input type="text" name="phone_number" placeholder="Phone number" required>
                                             <i class="fa-solid fa-phone"></i>
                                         </div> 
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form_group">
-                                            <input type="email" placeholder="Enter email">
+                                            <input type="email" name="email" placeholder="Enter email" required>
                                             <i class="fa-regular fa-envelope"></i>
                                         </div> 
                                     </div>
                                 </div> 
                                 <div class="form_group">
-                                    <textarea placeholder="Write message" name="" id=""></textarea>
+                                    <textarea name="message" placeholder="Write message" required></textarea>
                                 </div> 
-                                <div class="btn_login">
-                                    <button type="submit" class="btn_2 free_demo_btn">Send Message <i class="fa-solid fa-arrow-right"></i></button>  
+                                <div class="btn_login">    
+                                    <button type="button"  class="btn_2 free_demo_btn" data-file='true' id="contact_btn" onclick="_run(this)" data-el="fg" data-form="contact_form" data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" data-callback="contact_callback" data-btnid="contact_btn">Send Message <i class="fa-solid fa-arrow-right"></i></button> 
                                 </div>
                             </div>
                         </form>
+                        
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -122,19 +124,18 @@
 @section('script')
  
 
-    <script>  
+    <script>    
 
-
-        function blog_post_callback(data){
+        function contact_callback(data){
             if (data.status == true) {
                 notify('success', data.message, 'Success');
-                $('#blog_post_form')[0].reset();
+                $('#contact_form')[0].reset();
                 setTimeout(function() {
                     window.location.reload(); 
                 }, 1000 * 2);
             } else {
                 notify('error', data.message, 'Error');
-                $.validator("blog_post_form", data.errors);
+                $.validator("contact_form", data.errors);
             }
         } 
 

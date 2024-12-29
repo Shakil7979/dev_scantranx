@@ -35,7 +35,8 @@
         }
         .logo_img {
             width: 150px;
-        }
+        } 
+        
     </style>
 
     @yield('custom-css')
@@ -92,17 +93,17 @@
                         </a>
                     </li>
                     <li>
-                        <a href="contact-form.html">
+                        <a class="{{ Route::currentRouteName() == 'contact.show' ? 'active' : '' }}" href="{{ route('contact.show') }}">
                             <img src="assets/images/sidebar/Call.png" alt="">Contact form
                         </a>
                     </li>
                     <li>
-                        <a href="reseller.html">
+                        <a class="{{ Route::currentRouteName() == 'reseller.show' ? 'active' : '' }}" href="{{ route('reseller.show') }}">
                             <img src="assets/images/sidebar/Profile.png" alt="">Reseller
                         </a>
                     </li>
                     <li>
-                        <a href="download-e-book.html">
+                        <a class="{{ Route::currentRouteName() == 'ebook.download.show' ? 'active' : '' }}" href="{{ route('ebook.download.show') }}">
                             <img src="assets/images/sidebar/Download.png" alt="">E-book download
                         </a>
                     </li>

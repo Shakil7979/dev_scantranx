@@ -28,6 +28,33 @@
         <link rel="stylesheet" href="{{asset('user/assets/css/responsive.css')}}">
 
         
+        {{-- common css  --}}
+        <link href="{{asset('common/css/toastr.min.css')}}" rel="stylesheet" type="text/css')}}" />
+        <link href="{{asset('common/css/ext-component-toastr.css')}}" rel="stylesheet" type="text/css')}}" />
+        <link href="{{asset('common/css/ext-component-sweet-alerts.css')}}" rel="stylesheet" type="text/css')}}" />
+        <link href="{{asset('common/css/form-validation.css')}}" rel="stylesheet" type="text/css" />
+
+        <style>
+            .error-msg {
+                color: rgb(206, 53, 53);
+                font-size: 14px;
+            }
+            .logo_img {
+                width: 150px;
+            }
+            #toast-container { 
+                z-index: 999999999999 !important; 
+            } 
+            .toast-message {
+                font-size: 14px !important; 
+            }
+            .toast-title{
+                font-size: 16px !important;  
+
+            }
+        </style>
+
+        
         @yield('custom-css')
     </head>
     <body> 
@@ -350,14 +377,29 @@
         <script src="{{asset('user/assets/js/jquery.min.js')}}"></script>
         <script src="{{asset('user/assets/js/popper.min.js')}}"></script>
         <script src="https://assets.calendly.com/assets/external/widget.js"></script> 
-        <!-- Bootstrap -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <!-- Bootstrap --> 
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
         <!-- Modernizr -->
         <script src="{{asset('user/assets/js/modernizr-3.11.2.min.js')}}"></script>
         <!-- Custom JS (Handed)-->
         <script src="{{asset('user/assets/js/scripts.js')}}"></script>
+
+
+        
+        <!-- {{-- common js  --}} -->
+        <script src="{{asset('common/js/jquery.validate.min.js')}}"></script>
+        <script src="{{asset('common/js/common-ajax.js')}}"></script>
+        <script src="{{asset('common/js/confirm-alert.js')}}"></script>
+        <script src="{{asset('common/js/custom-validation.js')}}"></script>
+        <script src="{{asset('common/js/toastr.min.js')}}"></script>  
+
+        <link href="{{asset('common/css/toastr.min.css')}}" rel="stylesheet" type="text/css" /> 
+        <link href="{{asset('common/css/ext-component-toastr.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('common/css/ext-component-sweet-alerts.css')}}" rel="stylesheet" type="text/css" />
+        <link href="{{asset('common/css/form-validation.css')}}" rel="stylesheet" type="text/css" />
 
         
         @yield('script')
