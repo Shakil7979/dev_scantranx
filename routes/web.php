@@ -9,15 +9,32 @@ use Illuminate\Support\Facades\Route;
 
 use Illuminate\Http\Request;
 
-Route::post('/set-timezone', function (Request $request) {
-    $timezone = $request->input('timezone');
-    session(['user_timezone' => $timezone]);
-    return response()->json(['status' => 'success']);
-});
 
 
-// User Routes
+
+// User Routes Here
 Route::get('/', [UserController::class, 'index'])->name('user.home');  // User homepage
+Route::get('/home-v2', [UserController::class, 'homev2'])->name('user.homev2');  // User homepage
+Route::get('/about', [UserController::class, 'about'])->name('user.about'); 
+Route::get('/api-integration', [UserController::class, 'api_integration'])->name('user.api.integration'); 
+Route::get('/blog', [UserController::class, 'blog'])->name('user.blog'); 
+Route::get('/contact', [UserController::class, 'contact'])->name('user.contact'); 
+Route::get('/features', [UserController::class, 'features'])->name('user.features'); 
+Route::get('/hardware', [UserController::class, 'hardware'])->name('user.hardware'); 
+Route::get('/job-opening', [UserController::class, 'job_opening'])->name('user.job.opening'); 
+Route::get('/pricing', [UserController::class, 'pricing'])->name('user.pricing'); 
+Route::get('/privecy-policy', [UserController::class, 'privecy_policy'])->name('user.privecy.policy'); 
+Route::get('/quickbook-disconnect', [UserController::class, 'quickbook_disconnect'])->name('user.quickbook.disconnect'); 
+Route::get('/quickbook', [UserController::class, 'quickbook'])->name('user.quickbook'); 
+Route::get('/reseller', [UserController::class, 'reseller'])->name('user.reseller'); 
+Route::get('/stripe', [UserController::class, 'stripe'])->name('user.stripe'); 
+
+
+
+
+
+
+// Admin Route Here 
 Route::get('/admin', function () {
     return redirect()->route('admin.login');
 });
@@ -63,4 +80,15 @@ Route::prefix('admin')->group(function () {
 
 
 
+});
+
+
+
+
+
+// time zone route 
+Route::post('/set-timezone', function (Request $request) {
+    $timezone = $request->input('timezone');
+    session(['user_timezone' => $timezone]);
+    return response()->json(['status' => 'success']);
 });

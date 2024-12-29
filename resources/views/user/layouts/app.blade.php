@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html  lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta property="og:title" content="">
+        <meta property="og:type" content="">
+        <meta property="og:url" content="">
+        <meta property="og:image" content="">
+
+        <title>@yield('title')</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">  
+        <link rel="icon" href="{{asset('user/assets/images/fav.png')}}">
+
+        <!-- Bootstrap -->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <!-- Fontawesome -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
+        <!-- Normalize -->
+        <link rel="stylesheet" href="{{asset('user/assets/css/owl.carousel.min.css')}}"> 
+        <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+        <link rel="stylesheet" href="{{asset('user/assets/css/owl.theme.default.min.css')}}">
+        <link rel="stylesheet" href="{{asset('user/assets/fonts/stylesheet.css')}}">
+        <link rel="stylesheet" href="{{asset('user/assets/css/normalize.css')}}">
+        <!-- CSS Files -->
+        <link rel="stylesheet" href="{{asset('user/assets/css/style.css')}}">
+        <link rel="stylesheet" href="{{asset('user/assets/css/responsive.css')}}">
+
+        
+        @yield('custom-css')
+    </head>
+    <body> 
+
+        
+        <!--=====================  Start Header Area  ====================-->
+        <header class="header_area">
+            <div class="top_header">
+                <div class="container">
+                    <div class="top_header_content">
+                        <p>Get a <button class="free_e_book_modal_show">FREE</button> e-book on 4 proven strategies to increase your sale</p>
+                    </div>
+                </div>
+            </div>
+            <div class="main_header">
+                <div class="container">
+                    <div class="header">
+                        <div class="logo">
+                            <a href="{{ route('user.home') }}">
+                                <img src="{{ asset('user/assets/images/logo.svg') }}" alt="Logo">
+                            </a>
+                        </div>
+                        <div class="menu">
+                            <ul>
+                                <li><a href="{{ route('user.home') }}">Home</a></li>
+                                <li><a href="{{ route('user.features') }}">Features</a></li>
+                                <li><a href="{{ route('user.hardware') }}">Hardware</a></li>
+                                <li><a href="{{ route('user.pricing') }}">Pricing</a></li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">Integration <i class="fa-solid fa-angle-down"></i></a>
+                                    <ul class="drop_down_menu">
+                                        <li><a href="{{ route('user.quickbook') }}">QuickBooks</a></li>
+                                        <li><a href="{{ route('user.stripe') }}">Stripe</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="dropdown-toggle">Resources <i class="fa-solid fa-angle-down"></i></a>
+                                    <ul class="drop_down_menu">
+                                        <li><a href="{{ route('user.blog') }}">Blog</a></li>
+                                        <li><a href="{{ route('user.api.integration') }}">API</a></li>
+                                        <li><a href="{{ route('user.about') }}">About</a></li>
+                                        <li><a href="{{ route('user.job.opening') }}">Careers</a></li>
+                                        <li><a href="{{ route('user.reseller') }}">Resellers</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="{{ route('user.contact') }}">Contact</a></li>
+                                <li>
+                                    <button type="button" class="btn_1 mobile_show login_show_form">Login</button>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="header_login_btn">
+                            <ul>
+                                <li><button type="button" class="btn_1 desktop_show login_show_form">Login</button></li>
+                                <li><a href="#" class="btn_2 free_demo_btn open-calendly">Free Demo <i class="fa-solid fa-arrow-right"></i></a></li>
+                                <li><a href="#" class="mobile_bars"><i class="fas fa-bars"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header> 
+        <!--=====================  End Header Area  ====================-->
+ 
+        @yield('content')   
+                
+        <!--=====================  Start Header Area  ====================-->
+        <footer class="footer_area">
+            <div class="container">
+                <div class="footer">
+                    <div class="footer_single">
+                        <h3>Company</h3>
+                        <ul>  
+                            <li><a href="about-us.html">About us</a></li>
+                            <li><a href="blog.html">Blog</a></li>
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="privecy-policy.html">Privacy Policy</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li> 
+                        </ul>
+                    </div>
+                    <div class="footer_single">
+                        <h3>Platform</h3>
+                        <ul>   
+                            <li><a href="pricing.html">Pricing</a></li>
+                            <li><a href="hardware.html">Hardware</a></li>
+                            <li><a href="partners.html">Partners</a></li>
+                            <li><a href="faq.html">FAQ’s</a></li> 
+                        </ul>
+                    </div>
+                    <div class="footer_single">
+                        <h3>Features</h3>
+                        <ul class="feature_item_link">   
+                            <li><a href="features.html#Inventory">Inventory Management</a></li>
+                            <li><a href="features.html#Omni">Omni- channel solution</a></li>
+                            <li><a href="features.html#POS">Point of Sale (POS)</a></li> 
+                            <li><a href="features.html#ecommerce">E-commerce</a></li> 
+                            <li><a href="features.html#Customer">Customer Management</a></li> 
+                            <li><a href="features.html#Accounting">Accounting Tools</a></li> 
+                            <li><a href="features.html#Reporting">Reporting & Analytics</a></li> 
+                            <li><a href="features.html#Data">Data Management</a></li> 
+                            <li><a href="features.html#Store">Store Management</a></li> 
+                        </ul>
+                    </div>
+                    <div class="footer_single">
+                        <h3>Support</h3>
+                        <ul>   
+                            <li><a href="support-center.html">Support Center</a></li>
+                            <li><a href="login.html">Login</a></li> 
+                            <li><a href="download.html">Download AnyDesk</a></li> 
+                            <li><a href="privecy-policy.html">Privacy policy</a></li> 
+                            <li><a href="terms-conditions.html">Terms and Condition</a></li>  
+                        </ul>
+                    </div>
+                    <div class="footer_single">
+                        <h3>Socials</h3>
+                        <ul>
+                            <li><a href="https://twitter.com/scantranx">Twitter</a></li> 
+                            <li><a href="https://www.instagram.com/scantranx">Instagram</a></li> 
+                            <li><a href="https://www.linkedin.com/company/scantranx">LinkedIn</a></li> 
+                            <li><a href="https://www.facebook.com/scantranx">Facebook</a></li>  
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer_bottom">
+                    <div class="row align-items-center">
+                        <div class="col-md-6">
+                            <div class="footer_left">
+                                <a href="#"><img src="{{asset('user/assets/images/logo.svg')}}" alt=""></a>
+                                <p>Scantranx is a Cloud Based Omnichannel Retail POS solution that helps businesses to increase sales, save costs, and enhance customer experience by integrating online & in-store sales. Our platform provides retailers with integrated components such as powerful Smart Inventory management system, POS Software, e-Commerce, API for third party integration, and a powerful analytics dashboard to make informed business decisions in real-time.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="footer_social">
+                                <ul>
+                                    <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                                    <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li> 
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_copy_right">
+                    <p>Copyright © 2024 Scantranx. All rights reserved. Scantranx is a registered trademark.</p>
+                </div>
+            </div>
+        </footer>
+        <!--=====================  End Header Area  ====================-->
+
+            <!-- modal is here  --> 
+    <div class="modal_area"> 
+        <div class="modal_close_overlay"></div>
+        <!-- login modal  -->
+        <div class="modal_main_login"> 
+            <div class="login_modal">
+                <div class="sk_modal_content">
+                    <div class="modal_header">
+                        <h3>Scantranx Login</h3>
+                        <button class="close_modal"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="modal_form">
+                        <form action="#">
+                            <div class="login_form"> 
+                                <div class="form_group">
+                                    <input type="email" placeholder="Enter email">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div class="form_group">
+                                    <input type="password" id="password" placeholder="Enter password">
+                                    <i class="fa-solid fa-lock"></i>
+                                    <button class="eye_password"><i class="fa-regular fa-eye"></i></button>
+                                </div>
+                                <a href="#">Forget password</a>
+                                <div class="btn_login">
+                                    <button type="submit" class="btn_2 free_demo_btn">Login <i class="fa-solid fa-arrow-right"></i></button> 
+                                    <p>Don’t have an account? <button class="btn_log_reg show_registraion_modal">Register</button></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>   
+        </div>  
+
+        <!-- registraion modal  -->
+        <div class="modal_main_registraion"> 
+            <div class="login_modal">
+                <div class="sk_modal_content">
+                    <div class="modal_header">
+                        <div class="modal_title">  
+                            <h3>Create your free Scantranx Account</h3>
+                            <p>Enjoy 14 days free Trial on paid plans. No Credit Card Required.</p>
+                        </div>
+                        <button class="close_modal"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="modal_form">
+                        <form action="#">
+                            <div class="login_form"> 
+                                <div class="form_group">
+                                    <input type="text" placeholder="Account name">
+                                    <i class="fa-regular fa-user"></i>
+                                    <span class="email_for_reg">.scantranx.com</span>
+                                </div> 
+                                <div class="form_group">
+                                    <input type="text" placeholder="Business name">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div> 
+                                <div class="form_group"> 
+                                    <select name="" id="">
+                                        <option value="Country">Country</option>
+                                        <option value="bangladesh">bangladesh</option>
+                                        <option value="bangladesh">bangladesh</option>
+                                        <option value="bangladesh">bangladesh</option>
+                                        <option value="bangladesh">bangladesh</option>
+                                        <option value="bangladesh">bangladesh</option>
+                                    </select>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div> 
+                                <div class="form_group">
+                                    <input type="text" placeholder="Phone number">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div> 
+                                <div class="form_group">
+                                    <input type="email" placeholder="Enter email">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div> 
+                                <div class="form_group"> 
+                                    <select name="" id="">
+                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
+                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
+                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
+                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
+                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
+                                    </select>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div> 
+                                <div class="form_group check_box">
+                                    <input class="checkbox-input" type="checkbox" id="checkbox-1" />
+                                    <label for="checkbox-1">By signing up you agree to the Scantranx <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></label>
+                                </div>
+                                <div class="btn_login">
+                                    <button type="submit" class="btn_2 free_demo_btn">Create Account <i class="fa-solid fa-arrow-right"></i></button> 
+                                    <p>Already have an account? <button class="btn_log_reg show_login_modal">Login</button></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>   
+        </div>  
+
+        <!-- Free ebook modal  -->
+        <div class="modal_main_ebook"> 
+            <div class="login_modal">
+                <div class="sk_modal_content">
+                    <div class="modal_header">
+                        <div class="modal_title">  
+                            <h3>Complete the form to Download</h3>
+                            <p>Get Free E-Book on 4 Ways to Start Winning in your Retail Business</p>
+                        </div>
+                        <button class="close_modal"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
+                    <div class="modal_form">
+                        <form action="#">
+                            <div class="login_form"> 
+                                <div class="form_group">
+                                    <input type="text" placeholder="Full name">
+                                    <i class="fa-regular fa-user"></i> 
+                                </div> 
+                                <div class="form_group">
+                                    <input type="text" placeholder="Business name">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div> 
+                                <div class="form_group"> 
+                                    <select name="" id="">
+                                        <option value="Country">Position i.e Business Owner</option> 
+                                        <option value="Country">Position i.e Business Owner</option> 
+                                        <option value="Country">Position i.e Business Owner</option> 
+                                        <option value="Country">Position i.e Business Owner</option> 
+                                    </select>
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div> 
+                                <div class="form_group">
+                                    <input type="text" placeholder="Phone number">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div> 
+                                <div class="form_group">
+                                    <input type="email" placeholder="Enter email">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>  
+                                <div class="btn_login">
+                                    <button type="submit" class="btn_2 free_demo_btn">Download E-Book<i class="fa-solid fa-arrow-right"></i></button></p>
+                                </div>
+                            </div>
+                        </form>
+                    </div> 
+                </div>
+            </div>   
+        </div>  
+
+        
+        <div id="videoPopup" class="popup-overlay">
+            <div class="popup-content">
+                <video id="localVideo" controls>
+                    <source src="" type="video/mp4"> 
+                </video>
+                <button class="close-popup"><i class="fas fa-times"></i></button>
+            </div>
+        </div>
+        
+    </div>
+ 
+
+
+        <!-- ~~~~~~~~~~ JS Files ~~~~~~~~~~-->
+        <!-- jQuery -->
+        <script src="{{asset('user/assets/js/jquery.min.js')}}"></script>
+        <script src="{{asset('user/assets/js/popper.min.js')}}"></script>
+        <script src="https://assets.calendly.com/assets/external/widget.js"></script> 
+        <!-- Bootstrap -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <script src="{{asset('user/assets/js/owl.carousel.min.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js"></script>
+        <!-- Modernizr -->
+        <script src="{{asset('user/assets/js/modernizr-3.11.2.min.js')}}"></script>
+        <!-- Custom JS (Handed)-->
+        <script src="{{asset('user/assets/js/scripts.js')}}"></script>
+
+        
+        @yield('script')
+
+    </body>
+</html>
