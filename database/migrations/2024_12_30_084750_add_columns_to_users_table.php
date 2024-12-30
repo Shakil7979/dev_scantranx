@@ -1,5 +1,4 @@
 <?php
-
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,18 +12,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {  
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+        Schema::table('users', function (Blueprint $table) {
             $table->string('business_name')->nullable();
             $table->string('country')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('plan')->nullable(); 
-            $table->timestamps();
         });
     }
 
@@ -35,6 +27,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('business_name');
+            $table->dropColumn('country');
+            $table->dropColumn('phone_number');
+            $table->dropColumn('plan'); 
+        });
     }
 };

@@ -180,7 +180,7 @@ class JobController extends Controller
         if ($request->hasFile('resume')) {
             try {
                 // Assuming the user ID is available
-                $userId = 1;  // Fetch the ID of the authenticated user 
+                $userId = Auth::id();  // Fetch the ID of the authenticated user 
                 $filename = $userId . '.' . $request->resume->getClientOriginalExtension(); // User ID + file extension
     
                 // Define the target directory

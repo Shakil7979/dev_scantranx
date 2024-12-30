@@ -15,6 +15,14 @@ use Illuminate\Http\Request;
 
 
 
+// Here is all route have for this application 
+
+// User Auth Route 
+Route::post('/user/registraion', [UserController::class, 'register'])->name('user.registration');
+Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
+Route::post('/user/logout', [UserController::class, 'logout'])->name('user.logout');
+
+
 
 // User Routes Here
 Route::get('/', [UserController::class, 'index'])->name('user.home');  // User homepage
@@ -39,6 +47,7 @@ Route::post('/contact', [ContactController::class, 'store'])->name('contact.stor
 // Job Apply Route 
 Route::post('/apply-job', [JobController::class, 'applyForJob'])->name('job.apply');
 Route::get('/user-get-job-info/{id}', [JobController::class, 'job_get_info']);
+
 
 
 

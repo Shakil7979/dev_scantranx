@@ -2,6 +2,15 @@
 @section('title', 'Job Opening')
 @section('custom-css')  
 
+<style>
+    .disable_btn:disabled {
+        opacity: 0.7; /* Reduce opacity */
+        cursor: not-allowed; /* Change cursor to indicate it's disabled */
+        pointer-events: none; /* Disable hover effects */
+    }
+
+</style>
+
 @endsection
 
 @section('content')
@@ -215,7 +224,22 @@
                                 </div>
                             </div>
                             <div class="job_right_btn">
-                                <a href="#" job_id="{{ $item->id }}" class="btn_2 free_demo_btn"  type="submit">Apply <i class="fa-solid fa-arrow-right"></i> </a> 
+
+
+                                @if (in_array($item->id, $appliedJobIds))
+                                    <!-- If user has already applied, show "Applied" and disable the button -->
+                                    <button class="btn_2 free_demo_btn disable_btn" disabled>Applied <i class="fa-solid fa-arrow-right"></i></button>
+                                @else
+                                    <!-- If user has not applied -->
+                                    @if (Auth::check() && Auth::user()->role === 'user')
+                                        <!-- User is logged in -->
+                                        <a href="#" job_id="{{ $item->id }}" class="btn_2 free_demo_btn" type="submit">Apply <i class="fa-solid fa-arrow-right"></i></a>
+                                    @else
+                                        <!-- User is not logged in -->
+                                        <button class="btn_2 free_demo_btn login_show_form" type="button">Apply <i class="fa-solid fa-arrow-right"></i></button>
+                                    @endif
+                                @endif 
+ 
                             </div> 
                         </div>
                     @endforeach 
@@ -262,15 +286,17 @@
         function job_post_callback(data){
             if (data.status == true) {
                 notify('success', data.message, 'Success');
-                // $('#job_post_form')[0].reset();
+                $('#job_post_form')[0].reset();
                 setTimeout(function() {
-                    // window.location.reload(); 
+                    window.location.reload(); 
                 }, 1000 * 2);
             } else {
                 notify('error', data.message, 'Error');
                 $.validator("job_post_form", data.errors);
             }
         } 
+
+        $('.disable_btn').prop('disabled', true);
 
     </script>
 

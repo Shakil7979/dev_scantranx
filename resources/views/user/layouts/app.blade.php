@@ -109,7 +109,18 @@
                         
                         <div class="header_login_btn">
                             <ul>
-                                <li><button type="button" class="btn_1 desktop_show login_show_form">Login</button></li>
+                                <li>
+                                    <!-- Show the Login button if the user is NOT logged in (with 'user' role) -->
+                                    @if (!Auth::check() || Auth::user()->role != 'user')
+                                    <button type="button" class="btn_1 desktop_show login_show_form">Login</button>
+                                    @endif
+
+                                    <!-- Show the Logout button if the user is logged in and has the 'user' role -->
+                                    @if (Auth::check() && Auth::user()->role == 'user')
+                                    <a href="{{route('user.logout')}}" class="btn_1 desktop_show logout_button">Logout</a>
+                                    @endif
+                                </li>
+
                                 <li><a href="#" class="btn_2 free_demo_btn open-calendly">Free Demo <i class="fa-solid fa-arrow-right"></i></a></li>
                                 <li><a href="#" class="mobile_bars"><i class="fas fa-bars"></i></a></li>
                             </ul>
@@ -219,20 +230,24 @@
                         <button class="close_modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal_form">
-                        <form action="#">
+                        <form action="{{ route('user.login') }}" id="user_login_form" method="POST">
+                            @csrf
                             <div class="login_form"> 
                                 <div class="form_group">
-                                    <input type="email" placeholder="Enter email">
+                                    <input type="email" name="email" placeholder="Enter email">
                                     <i class="fa-regular fa-envelope"></i>
                                 </div>
                                 <div class="form_group">
-                                    <input type="password" id="password" placeholder="Enter password">
+                                    <input type="password" name="password" id="password" placeholder="Enter password">
                                     <i class="fa-solid fa-lock"></i>
                                     <button class="eye_password"><i class="fa-regular fa-eye"></i></button>
                                 </div>
                                 <a href="#">Forget password</a>
-                                <div class="btn_login">
-                                    <button type="submit" class="btn_2 free_demo_btn">Login <i class="fa-solid fa-arrow-right"></i></button> 
+                                <div class="btn_login"> 
+
+                                    <button type="button"  class="btn_2 free_demo_btn" data-file='true' id="user_login_btn" onclick="_run(this)" data-el="fg" data-form="user_login_form" data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" data-callback="user_login_callback" data-btnid="user_login_btn">Login <i class="fa-solid fa-arrow-right"></i></button> 
+
+
                                     <p>Don’t have an account? <button class="btn_log_reg show_registraion_modal">Register</button></p>
                                 </div>
                             </div>
@@ -254,56 +269,67 @@
                         <button class="close_modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal_form">
-                        <form action="#">
+                        <form action="{{ route('user.registration') }}" id="user_registration_form" method="POST">
+                            @csrf
                             <div class="login_form"> 
                                 <div class="form_group">
-                                    <input type="text" placeholder="Account name">
+                                    <input type="text" name="account_name" placeholder="Account name">
                                     <i class="fa-regular fa-user"></i>
                                     <span class="email_for_reg">.scantranx.com</span>
                                 </div> 
                                 <div class="form_group">
-                                    <input type="text" placeholder="Business name">
+                                    <input type="text" name="business_name" placeholder="Business name">
                                     <i class="fa-regular fa-envelope"></i>
                                 </div> 
                                 <div class="form_group"> 
-                                    <select name="" id="">
+                                    <select name="country" id="">
                                         <option value="Country">Country</option>
-                                        <option value="bangladesh">bangladesh</option>
-                                        <option value="bangladesh">bangladesh</option>
-                                        <option value="bangladesh">bangladesh</option>
-                                        <option value="bangladesh">bangladesh</option>
-                                        <option value="bangladesh">bangladesh</option>
+                                        <option value="bangladesh">Bangladesh</option>
+                                        <option value="usa">USA</option>
+                                        <option value="uk">UK</option>
+                                        <option value="india">India</option>
                                     </select>
                                     <i class="fa-solid fa-location-dot"></i>
                                 </div> 
                                 <div class="form_group">
-                                    <input type="text" placeholder="Phone number">
+                                    <input type="text" name="phone_number" placeholder="Phone number">
                                     <i class="fa-solid fa-phone"></i>
                                 </div> 
                                 <div class="form_group">
-                                    <input type="email" placeholder="Enter email">
+                                    <input type="email" name="email" placeholder="Enter email">
                                     <i class="fa-regular fa-envelope"></i>
                                 </div> 
-                                <div class="form_group"> 
-                                    <select name="" id="">
-                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
-                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
-                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
-                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
-                                        <option value="">Select plan i.e Basic - $19.99/month</option> 
+                                {{-- <div class="form_group"> 
+                                    <select name="plan" id="">
+                                        <option value="">Select plan i.e Basic - $19.99/month</option>
+                                        <option value="basic">Basic - $19.99/month</option>
+                                        <option value="premium">Premium - $29.99/month</option>
                                     </select>
                                     <i class="fa-solid fa-location-dot"></i>
-                                </div> 
+                                </div>  --}}
+                                <div class="form_group">
+                                    <input type="password" id="rg_password" name="password"placeholder="Enter password">
+                                    <i class="fa-solid fa-lock"></i> 
+                                </div>
+                                <div class="form_group">
+                                    <input type="password" id="rg_confirm_password" name="password_confirmation"placeholder="Enter confirm password">
+                                    <i class="fa-solid fa-lock"></i> 
+                                </div>
                                 <div class="form_group check_box">
-                                    <input class="checkbox-input" type="checkbox" id="checkbox-1" />
+                                    <input class="checkbox-input" type="checkbox" name="terms" id="checkbox-1" />
                                     <label for="checkbox-1">By signing up you agree to the Scantranx <a href="#">Terms and Conditions</a> and <a href="#">Privacy Policy</a></label>
                                 </div>
-                                <div class="btn_login">
-                                    <button type="submit" class="btn_2 free_demo_btn">Create Account <i class="fa-solid fa-arrow-right"></i></button> 
+                                <div class="btn_login">   
+
+                                    <button type="button"  class="btn_2 free_demo_btn" data-file='true' id="user_registration_btn" onclick="_run(this)" data-el="fg" data-form="user_registration_form" data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" data-callback="user_registraion_callback" data-btnid="user_registration_btn">Create Account <i class="fa-solid fa-arrow-right"></i></button> 
+
+
+
                                     <p>Already have an account? <button class="btn_log_reg show_login_modal">Login</button></p>
                                 </div>
                             </div>
                         </form>
+                        
                     </div> 
                 </div>
             </div>   
@@ -403,6 +429,61 @@
 
         
         @yield('script')
+
+        
+
+        <script>    
+
+            function user_registraion_callback(data){
+                if (data.status == true) {
+                    notify('success', data.message, 'Success');
+                    $('#user_registration_form')[0].reset();
+                    setTimeout(function() { 
+                        $('.modal_main_registraion').hide();
+                        $('.modal_main_login').show();
+                    }, 1000 * 2);
+                } else {
+                    notify('error', data.message, 'Error');
+                    $.validator("user_registration_form", data.errors);
+                }
+            } 
+
+            function user_login_callback(data){
+                if (data.status == true) {
+                    notify('success', data.message, 'Success');
+                    $('#user_login_form')[0].reset();
+                    setTimeout(function() { 
+                        window.location.reload(); 
+                    }, 1000 * 2);
+                } else {
+                    notify('error', data.message, 'Error');
+                    $.validator("user_login_form", data.errors);
+                }
+            } 
+
+            $('.logout_button').click(function(){ 
+                $.ajax({
+                    url: '{{ route("user.logout") }}',  
+                    type: 'POST', 
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr('content') // CSRF Token for security
+                    },
+                    success: function(response) {
+                        if (response.status === 'success') {  
+                            location.reload();
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('Logout failed: ', error);
+                        alert('An error occurred while logging out.');
+                    }
+                });
+                
+                return false;
+            })
+
+        </script>
+
 
     </body>
 </html>
