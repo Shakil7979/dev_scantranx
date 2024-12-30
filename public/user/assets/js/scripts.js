@@ -18,7 +18,10 @@ $(document).ready(function(){
 		dots:true,
 		autoplay:true,
 		margin: 20,
-		navText: ["<img src='assets/images/home/customer/left.png'>","<img src='assets/images/home/customer/right.png'>"],
+		navText: [
+			"<img src='/user/assets/images/home/customer/left.png'>",
+			"<img src='/user/assets/images/home/customer/right.png'>"
+		],
 		responsive:{
 			0:{
 			  items:1,
@@ -63,7 +66,10 @@ $(document).ready(function(){
 		nav:true,
 		dots:false,
 		autoplay:false,
-		navText: ["<img src='assets/images/home/customer/left.png'>","<img src='assets/images/home/customer/right.png'>"],
+		navText: [
+			"<img src='/user/assets/images/home/customer/left.png'>",
+			"<img src='/user/assets/images/home/customer/right.png'>"
+		],
 		margin: 20, 
 		responsive:{
 			0:{
@@ -133,9 +139,46 @@ $(document).ready(function(){
 		$('.modal_main_ebook').hide();
 		$('.modal_main_apply_job').hide();
 		$('.modal_main_job').show();
+		
+		var job_id = $(this).attr('job_id');  
+		
+		$('.apply_confirm').attr('add_job_id',job_id);
 
 		$('html, body').animate({ scrollTop: 0 }, 'fast'); 
-		return false;
+
+
+
+		$.ajax({
+			url: '/user-get-job-info/' + job_id, // Pass the job_id in the URL
+			type: 'GET',
+			success: function(response) {
+				
+				// Set the response data to the corresponding elements
+				$('.set_job_title').text(response.data.job_title);  // Set job title
+				$('.set_job_nation').text(response.data.job_nature);  // Set job nature (Full-time)
+				$('.set_job_location').text(response.data.location);  // Set job location
+				$('.set_job_experience').text(response.data.experience);  // Set job experience
+				$('.set_job_upload_time').text(response.data.upload_time);  // Set upload time
+				
+				// Set job summary
+				$('.set_job_requirements').text(response.data.summary);
+				$('.set_job_qualifications').text(response.data.qualifications); 
+				// Set application instructions
+				$('.set_job_application_instructions').text(response.data.application_instructions); 
+			},
+			error: function(xhr, status, error) {
+				console.log("Error: " + error);
+				// Handle error here
+			}
+		});
+		
+
+
+
+
+
+		return false; 
+
 	})
 
 	$(document).on('click','.apply_confirm', function(){
@@ -146,6 +189,11 @@ $(document).ready(function(){
 		$('.modal_main_ebook').hide();
 		$('.modal_main_job').hide();
 		$('.modal_main_apply_job').show();
+
+		var add_job_id = $(this).attr('add_job_id');
+		
+		$('.job_id_set').val(add_job_id);
+
 
 		$('html, body').animate({ scrollTop: 0 }, 'fast'); 
 		return false;
@@ -392,70 +440,7 @@ $(document).ready(function () {
 
  
 
-
-// test 
-
-
-// $(document).ready(function () {
-//     // Function to activate the correct tab and scroll to it
-//     function activateTab(tabId, shouldScroll = true) {
-//         const tabButton = $(`#${tabId}-tab`);
-//         const tabContent = $(`#${tabId}`);
-        
-//         // Remove active classes from all tabs and tab-content
-//         $('.nav-link').removeClass('active');
-//         $('.tab-pane').removeClass('active show');
-        
-//         // Add active class to the button and corresponding content
-//         tabButton.addClass('active');
-//         tabContent.addClass('active show');
-        
-//         // Ensure Bootstrap's tab functionality is invoked
-//         const tab = new bootstrap.Tab(tabButton[0]);
-//         tab.show();
-
-//         // Scroll only if shouldScroll is true
-//         if (shouldScroll) {
-//             $('html, body').animate({
-//                 scrollTop: tabContent.offset().top - 50 // Adjust offset if needed
-//             }, 500); // 500ms for smooth scrolling
-//         }
-//     }
-
-//     // Check if there is a hash in the URL (e.g., for coming from another page)
-//     const hash = window.location.hash;
-//     if (hash) {
-//         const tabId = hash.substring(1); // Extract tab ID from URL
-//         activateTab(tabId); // Activate the tab
-//     } else {
-//         // Default behavior: remove active classes on normal reload
-//         $('.nav-link').removeClass('active');
-//         $('.tab-pane').removeClass('active show');
-
-//         // Optionally, set the first tab as active (if desired)
-//         const firstTab = $('.nav-tabs .nav-item:first-child .nav-link');
-//         const firstTabContent = $('.tab-pane:first');
-        
-//         firstTab.addClass('active');
-//         firstTabContent.addClass('active show');
-        
-//         const tab = new bootstrap.Tab(firstTab[0]);
-//         tab.show();
-//     }
-
-//     // Handle click on feature list links
-//     $('.feature_item_link_own a').on('click', function (e) {
-//         e.preventDefault(); // Prevent default link behavior
-        
-//         const tabId = $(this).attr('href').substring(1); // Extract tab ID (e.g., 'Inventory', 'Omni')
-//         activateTab(tabId); // Activate the corresponding tab
-        
-//         // Update the URL hash
-//         window.location.hash = tabId;
-//     });
-// });
  
-
  
 
 $(document).ready(function () {

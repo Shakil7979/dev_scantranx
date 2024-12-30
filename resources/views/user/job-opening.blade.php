@@ -20,40 +20,35 @@
                 <div class="modal_form">
                     <div class="job_details_content">
                         <div class="job_content_left job_content_date">
-                            <h3>Software Engineer</h3>
-                            <p>Full-time</p>
+                            <h3 class="set_job_title">Software Engineer</h3>
+                            <p class="set_job_nation">Full-time</p>
                             <div class="job_ul">
                                 <ul>
-                                    <li><img src="assets/images/job/Location.png" alt=""><p>Toronto, Canada</p></li>
-                                    <li><img src="assets/images/job/Calendar.png" alt=""><p>1-2 year experience</p></li>
-                                    <li><img src="assets/images/job/clock.png" alt=""><p>2day ago posted</p></li>
+                                    <li><img src="{{ asset('user/assets/images/job/Location.png') }}" alt=""><p class="set_job_location">Toronto, Canada</p></li>
+                                    <li><img src="{{ asset('user/assets/images/job/Calendar.png') }}" alt=""><p> <span class="set_job_experience"></span> year experience</p></li>
+                                    <li><img src="{{ asset('user/assets/images/job/clock.png') }}" alt=""><p class="set_job_upload_time">2 days ago posted</p></li>
                                 </ul>
+                                
                             </div>
                         </div> 
                         <div class="job_content_left">
                             <h3>Responsibilities:</h3> 
                             <ul class="job_for_requirements">
-                                <li><p>Develop and maintain features for POS software.</p></li>
-                                <li><p>Collaborate with UX/UI designers to implement user-friendly interfaces.</p></li>
-                                <li><p>Optimize software performance and scalability.</p></li>
-                                <li><p>Conduct code reviews and provide constructive feedback.</p></li> 
+                                <li><p class="set_job_requirements">Develop and maintain features for POS software.</p></li> 
                             </ul> 
                         </div> 
                         <div class="job_content_left">
                             <h3>Qualifications:</h3> 
                             <ul class="job_for_requirements">
-                                <li><p>Bachelor’s degree in Computer Science or related field.</p></li>
-                                <li><p>Proficiency in Java, C#, or Python.</p></li>
-                                <li><p>Experience with RESTful APIs and database management.</p></li>
-                                <li><p>Strong problem-solving skills and attention to detail.</p></li> 
+                                <li><p class="set_job_qualifications">Bachelor’s degree in Computer Science or related field.</p></li> 
                             </ul> 
                         </div>   
                         <div class="job_content_left">
                             <h3>How to Apply:</h3> 
-                            <p>To apply for the Software Engineer position, please send your CV and cover letter to [Your Email Address]. Include "Software Engineer Application - Canada" in the subject line.</p>
+                            <p>To apply for the <span class="set_job_title">Software Engineer</span> position, please send your CV and cover letter to [Your Email Address]. Include "<span class="set_job_title">Software Engineer</span> Application - Canada" in the subject line.</p>
                         </div>    
                         <div class="job_requirement_btn">
-                            <button class="btn_2 free_demo_btn apply_confirm">Apply <i class="fa-solid fa-arrow-right"></i></button>
+                            <button class="btn_2 free_demo_btn apply_confirm" add_job_id="">Apply <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </div> 
@@ -72,57 +67,58 @@
                     <button class="close_modal"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="modal_form">
-                    <form action="#">
-                        <div class="login_form"> 
+                    <form action="{{ route('job.apply') }}" id="job_post_form" method="POST">
+                        @csrf
+                        <input type="hidden" name="job_id" class="job_id_set" value="">
+                        
+                        <div class="login_form">
                             <div class="form_group">
-                                <input type="text" placeholder="Full name">
+                                <input type="text" name="full_name" placeholder="Full name" required>
                                 <i class="fa-regular fa-user"></i> 
                             </div> 
-                            <div class="form_group"> 
-                                <input type="text" placeholder="Location">
+                            <div class="form_group">
+                                <input type="text" name="location" placeholder="Location" required>
                                 <i class="fa-solid fa-location-dot"></i>
                             </div> 
                             <div class="form_group">
-                                <input type="email" placeholder="Email address">
+                                <input type="email" name="email" placeholder="Email address" required>
                                 <i class="fa-regular fa-envelope"></i>
                             </div> 
                             <div class="form_group">
-                                <input type="text" placeholder="Linkedin (option)">
+                                <input type="text" name="linkedin" placeholder="LinkedIn (optional)">
                                 <i class="fa-brands fa-linkedin-in"></i>
                             </div> 
                             <div class="form_group">
-                                <input type="text" placeholder="GitHub or Portfolio Link (optional)">
+                                <input type="text" name="github_or_portfolio" placeholder="GitHub or Portfolio Link (optional)">
                                 <i class="fa-solid fa-link"></i>
                             </div> 
                             <div class="form_group">
-                                <input type="text" placeholder="Years of experience">
+                                <input type="text" name="years_of_experience" placeholder="Years of experience" required>
                                 <i class="fa-solid fa-calendar-days"></i>
                             </div> 
                             <div class="form_group">
-                                <input type="text" placeholder="Field of study">
+                                <input type="text" name="field_of_study" placeholder="Field of study" required>
                                 <i class="fa-solid fa-book"></i>
                             </div>  
                             <div class="form_group">
-                                <textarea placeholder="A short summary on why you think are the best fit for this" name="" id=""></textarea>
+                                <textarea name="summary" placeholder="A short summary on why you think you are the best fit for this job" required></textarea> 
                             </div>  
                             <div class="job_apply_file">
                                 <div class="file-upload-wrapper">
                                     <label class="file-upload-box mb-0">
-                                        <input type="file" class="file-upload-input" multiple>
+                                        <input type="file" name="resume" class="file-upload-input">
                                         <div class="upload-content">
-                                            <!-- <i class="fas fa-cloud-upload-alt upload-icon"></i> -->
-                                             <img src="assets/images/job/Upload.png" alt="">
+                                            <img src="{{ asset('user/assets/images/job/Upload.png') }}" alt="">
                                             <h5 class="mb-2">Upload Resume</h5> 
                                         </div>
                                     </label>
-                                    <div class="file-list"> 
-                                    </div>
-                                </div> 
+                                </div>
                             </div>
                             <div class="btn_login">
-                                <button class="btn_2 free_demo_btn">Apply <i class="fa-solid fa-arrow-right"></i></button> 
+                                <button type="button"  class="btn_2 free_demo_btn" data-file='true' id="job_post_btn" onclick="_run(this)" data-el="fg" data-form="job_post_form" data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" data-callback="job_post_callback" data-btnid="job_post_btn">Apply <i class="fa-solid fa-arrow-right"></i></button> 
                             </div>
                         </div>
+                        
                     </form>
                 </div> 
             </div>
@@ -205,57 +201,24 @@
 
                 <div class="job_serach_content">
 
-                    <div class="job_serach_single">
-                        <div class="job_content_left">
-                            <h3>Software Engineer</h3>
-                            <p>Full-time</p>
-                            <div class="job_ul">
-                                <ul>
-                                    <li><img src="{{asset('user/assets/images/job/Location.png')}} " alt=""><p>Toronto, Canada</p></li>
-                                    <li><img src="{{asset('user/assets/images/job/Calendar.png')}} " alt=""><p>1-2 year experience</p></li>
-                                    <li><img src="{{asset('user/assets/images/job/clock.png')}} " alt=""><p>2day ago posted</p></li>
-                                </ul>
+                    @foreach($job as $item)
+                        <div class="job_serach_single">
+                            <div class="job_content_left">
+                                <h3>{{ $item->job_title }}</h3>
+                                <p>{{ $item->job_nature }}</p>
+                                <div class="job_ul">
+                                    <ul>
+                                        <li><img src="{{ asset('user/assets/images/job/Location.png') }}" alt=""><p>{{ $item->location }}</p></li>
+                                        <li><img src="{{ asset('user/assets/images/job/Calendar.png') }}" alt=""><p>{{ $item->experience }} experience</p></li>
+                                        <li><img src="{{ asset('user/assets/images/job/clock.png') }}" alt=""><p>{{ \Carbon\Carbon::parse($item->created_at)->diffForHumans() }} ago posted</p></li>
+                                    </ul>
+                                </div>
                             </div>
+                            <div class="job_right_btn">
+                                <a href="#" job_id="{{ $item->id }}" class="btn_2 free_demo_btn"  type="submit">Apply <i class="fa-solid fa-arrow-right"></i> </a> 
+                            </div> 
                         </div>
-                        <div class="job_right_btn">
-                            <a href="#" class="btn_2 free_demo_btn" type="submit">Apply <i class="fa-solid fa-arrow-right"></i> </a> 
-                        </div> 
-                    </div>
-                    
-
-                    <div class="job_serach_single">
-                        <div class="job_content_left">
-                            <h3>Customer Support Specialist</h3>
-                            <p>Full-time (Remote)</p>
-                            <div class="job_ul">
-                                <ul>
-                                    <li><img src="{{asset('user/assets/images/job/Location.png')}} " alt=""><p>Toronto, Canada</p></li>
-                                    <li><img src="{{asset('user/assets/images/job/Calendar.png')}} " alt=""><p>1-2 year experience</p></li>
-                                    <li><img src="{{asset('user/assets/images/job/clock.png')}} " alt=""><p>2day ago posted</p></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="job_right_btn">
-                            <a href="#" class="btn_2 free_demo_btn" type="submit">Apply <i class="fa-solid fa-arrow-right"></i> </a> 
-                        </div> 
-                    </div>
-
-                    <div class="job_serach_single">
-                        <div class="job_content_left">
-                            <h3>Sales Executive</h3>
-                            <p>Full-time</p>
-                            <div class="job_ul">
-                                <ul>
-                                    <li><img src="{{asset('user/assets/images/job/Location.png')}} " alt=""><p>Toronto, Canada</p></li>
-                                    <li><img src="{{asset('user/assets/images/job/Calendar.png')}} " alt=""><p>1-2 year experience</p></li>
-                                    <li><img src="{{asset('user/assets/images/job/clock.png')}} " alt=""><p>2day ago posted</p></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="job_right_btn">
-                            <a href="#" class="btn_2 free_demo_btn" type="submit">Apply <i class="fa-solid fa-arrow-right"></i> </a> 
-                        </div> 
-                    </div>
+                    @endforeach 
 
                 </div>
             </div>
@@ -296,16 +259,16 @@
     <script>  
 
 
-        function blog_post_callback(data){
+        function job_post_callback(data){
             if (data.status == true) {
                 notify('success', data.message, 'Success');
-                $('#blog_post_form')[0].reset();
+                // $('#job_post_form')[0].reset();
                 setTimeout(function() {
-                    window.location.reload(); 
+                    // window.location.reload(); 
                 }, 1000 * 2);
             } else {
                 notify('error', data.message, 'Error');
-                $.validator("blog_post_form", data.errors);
+                $.validator("job_post_form", data.errors);
             }
         } 
 

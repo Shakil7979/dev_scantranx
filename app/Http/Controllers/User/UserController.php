@@ -3,17 +3,25 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
+use App\Models\Faq;
+use App\Models\Job;
+use App\Models\Testimonial;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
-        return view('user.home');
+        $faq = Faq::orderBy('created_at', 'asc')->get();
+        $testimonial = Testimonial::orderBy('created_at', 'asc')->get();
+        return view('user.home', compact('faq','testimonial'));
     }
     public function homev2()
     {
-        return view('user.home-v2');
+        $faq = Faq::orderBy('created_at', 'asc')->get();
+        $testimonial = Testimonial::orderBy('created_at', 'asc')->get();
+        return view('user.home-v2', compact('faq','testimonial'));
     }
     public function about()
     {
@@ -24,8 +32,9 @@ class UserController extends Controller
         return view('user.api-integration');
     }
     public function blog()
-    {
-        return view('user.blog');
+    {    
+        $blog = Blog::orderBy('created_at', 'desc')->get(); 
+        return view('user.blog', compact('blog'));
     }
     public function contact()
     {
@@ -40,8 +49,9 @@ class UserController extends Controller
         return view('user.hardware');
     }
     public function job_opening()
-    {
-        return view('user.job-opening');
+    { 
+        $job = Job::orderBy('created_at', 'desc')->get(); 
+        return view('user.job-opening', compact('job'));
     }
     public function pricing()
     {

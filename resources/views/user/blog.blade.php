@@ -51,104 +51,52 @@
             <div class="feature_box">
                 <h3>Featured Article</h3>
                 <div class="row gx-5">
-                    <div class="col-md-6">
-                        <div class="feature_blog_img">
-                            <img src="{{asset('user/assets/images/blog/feature.png')}} " alt="">
+                    @if($blog->skip(1)->take(1)->first()) <!-- Get the second blog -->
+                        @php
+                            $featuredBlog = $blog->skip(1)->take(1)->first(); 
+                        @endphp
+                        <div class="col-md-6">
+                            <div class="feature_blog_img">
+                                <img src="{{ asset($featuredBlog->image_path) }}" alt="">
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="feature_text">
-                            <a href="#" class="btn_2">Business</a>
-                            <span>21 Oct, 2024 - 5min Reading</span>
-                            <a class="link_blog">How modern POS solutions streamline business operations.</a>
-                            <p>Point-of-sale (POS) software is a comprehensive solution for your business that allows you to process payments, manage and collect customer information, update inventory, and build a loyal customer base. Whether you own a physical business, a retail merchant, an online business, or a restaurant chain, the modern POS system will help you achieve your business goals while providing excellent customer experience.</p>
+                        <div class="col-md-6">
+                            <div class="feature_text">
+                                <a href="#" class="btn_2">{{ $featuredBlog->category }}</a>
+                                <span>{{ $featuredBlog->created_at->format('d M, Y') }} - 5min Reading</span>
+                                <a class="link_blog">{{ $featuredBlog->title }}</a>
+                                <p>{{ $featuredBlog->description }}</p>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <p>No featured blog available.</p>
+                    @endif
                 </div>
             </div>
+            
             <div class="blog_box">
                 <h3>Recent Articles</h3>
-                <div class="row g-4"> 
-                    <div class="col-md-4">
-                        <div class="single_blog_items">
-                            <div class="feature_blog_img blog_item_img">
-                                <img src="{{asset('user/assets/images/blog/item/1.png')}} " alt=""> 
-                                <a href="#" class="btn_2">Business</a>
-                            </div>
-                            <div class="feature_text">
-                                <span>21 Oct, 2024 - 5min Reading</span>
-                                <a href="#" class="link_blog_item">How modern POS solutions streamline business operations.</a>
-                                <p>Point-of-sale (POS) software is a comprehensive solution for your business that allows you to process payments, manage and collect customer information, update inventory, and build a loyal customer base. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single_blog_items">
-                            <div class="feature_blog_img blog_item_img">
-                                <img src="{{asset('user/assets/images/blog/item/2.png')}} " alt=""> 
-                                <a href="#" class="btn_2">Retail</a>
-                            </div>
-                            <div class="feature_text">
-                                <span>17 Aug, 2024 - 6min Reading</span>
-                                <a href="#" class="link_blog_item">Cloud-Based POS Software for Retailers: A Complete Guide</a>
-                                <p>Retailers are faced with a variety of challenges that can make it challenging to stay competitive. These challenges include managing inventory, hiring the right staff, and making sure your customers are happy.</p>
+                <div class="row g-4">
+                    @forelse ($blog as $item)
+                        <div class="col-md-4">
+                            <div class="single_blog_items">
+                                <div class="feature_blog_img blog_item_img">
+                                    <img src="{{ asset($item->image_path) }}" alt="">
+                                    <a href="#" class="btn_2">{{ $item->category }}</a>
+                                </div>
+                                <div class="feature_text">
+                                    <span>{{ $item->created_at->format('d M, Y') }} - 5min Reading</span>
+                                    <a href="#" class="link_blog_item">{{ $item->title }}</a>
+                                    <p>{{ Str::limit($item->description, 100) }}</p> <!-- Limit description to 100 characters -->
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single_blog_items">
-                            <div class="feature_blog_img blog_item_img">
-                                <img src="{{asset('user/assets/images/blog/item/3.png')}} " alt=""> 
-                                <a href="#" class="btn_2">E-commerce</a>
-                            </div>
-                            <div class="feature_text">
-                                <span>17 Aug, 2024 - 6min Reading</span>
-                                <a href="#" class="link_blog_item">Scantranx Named amongst the best eCommerce Companies in New Brunswick by Best Startup Canada.</a>
-                                <p>We are thrilled to announce we have been featured in the Best Startup Canada Magazine as one of the top e-Commerce Companies in New Brunswick, Canada. </p>
-                            </div>
-                        </div>
-                    </div>  
-                    <div class="col-md-4">
-                        <div class="single_blog_items">
-                            <div class="feature_blog_img blog_item_img">
-                                <img src="{{asset('user/assets/images/blog/item/1.png')}} " alt=""> 
-                                <a href="#" class="btn_2">Business</a>
-                            </div>
-                            <div class="feature_text">
-                                <span>21 Oct, 2024 - 5min Reading</span>
-                                <a href="#" class="link_blog_item">How modern POS solutions streamline business operations.</a>
-                                <p>Point-of-sale (POS) software is a comprehensive solution for your business that allows you to process payments, manage and collect customer information, update inventory, and build a loyal customer base. </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single_blog_items">
-                            <div class="feature_blog_img blog_item_img">
-                                <img src="{{asset('user/assets/images/blog/item/2.png')}} " alt=""> 
-                                <a href="#" class="btn_2">Retail</a>
-                            </div>
-                            <div class="feature_text">
-                                <span>17 Aug, 2024 - 6min Reading</span>
-                                <a href="#" class="link_blog_item">Cloud-Based POS Software for Retailers: A Complete Guide</a>
-                                <p>Retailers are faced with a variety of challenges that can make it challenging to stay competitive. These challenges include managing inventory, hiring the right staff, and making sure your customers are happy.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="single_blog_items">
-                            <div class="feature_blog_img blog_item_img">
-                                <img src="{{asset('user/assets/images/blog/item/3.png')}} " alt=""> 
-                                <a href="#" class="btn_2">E-commerce</a>
-                            </div>
-                            <div class="feature_text">
-                                <span>17 Aug, 2024 - 6min Reading</span>
-                                <a href="#" class="link_blog_item">Scantranx Named amongst the best eCommerce Companies in New Brunswick by Best Startup Canada.</a>
-                                <p>We are thrilled to announce we have been featured in the Best Startup Canada Magazine as one of the top e-Commerce Companies in New Brunswick, Canada. </p>
-                            </div>
-                        </div>
-                    </div>  
+                    @empty
+                        <p>No recent articles available.</p>
+                    @endforelse
                 </div>
             </div>
+            
         </div>
     </section>
     <!--=====================  End Blog Area  ====================-->   

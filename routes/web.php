@@ -33,9 +33,12 @@ Route::get('/quickbook', [UserController::class, 'quickbook'])->name('user.quick
 Route::get('/reseller', [UserController::class, 'reseller'])->name('user.reseller'); 
 Route::get('/stripe', [UserController::class, 'stripe'])->name('user.stripe'); 
 
-// Website 
-
+// Website  
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+// Job Apply Route 
+Route::post('/apply-job', [JobController::class, 'applyForJob'])->name('job.apply');
+Route::get('/user-get-job-info/{id}', [JobController::class, 'job_get_info']);
 
 
 

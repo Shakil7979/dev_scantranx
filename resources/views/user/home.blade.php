@@ -236,79 +236,22 @@
                     <h2>Don't take our words for it. Here's what our <span>customers</span> are saying</h2>
                     <p>Join Hundreds of Customers worldwide using Scantranx to drive business growth.</p>
                 </div>
+                
                 <div class="customer_carousel owl-carousel owl-theme">
-                    <div class="single_customer">
-                        <div class="single_customer_img">
-                            <img src="{{asset('user/assets/images/home/customer/3.png')}} " alt="">
-                        </div> 
-                        <div class="customer_content">
-                            <p> "What I like most about Scantranx is that it provides all the services that I need for my eCommerce retail business on one seamless platform." </p>
-                            <div class="customer_name">
-                                <h5>Erin Ann Flood</h5>
-                                <span>CEO, GoDo, Canada</span>
+                    @foreach($testimonial as $item)
+                        <div class="single_customer">
+                            <div class="single_customer_img">
+                                <img src="{{ $item->resume_path }}" alt="">
+                            </div>
+                            <div class="customer_content">
+                                <p>"{{ $item->testimonial }}"</p>
+                                <div class="customer_name">
+                                    <h5>{{ $item->name }}</h5>
+                                    <span>{{ $item->designation }}</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="single_customer">
-                        <div class="single_customer_img">
-                            <img src="{{asset('user/assets/images/home/customer/4.png')}} " alt="">
-                        </div> 
-                        <div class="customer_content">
-                            <p> "We needed a solution that could give us our key performance reports on a single dashboard and Scantranx was able to do that. The staff are quite knowledgeable and the support is top-notch." </p>
-                            <div class="customer_name">
-                                <h5>Oladiwura Fakiyesi</h5>
-                                <span>CEO, Flenjorfoods Canada</span>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="single_customer">
-                        <div class="single_customer_img">
-                            <img src="{{asset('user/assets/images/home/customer/5.jpeg')}} " alt="">
-                        </div> 
-                        <div class="customer_content">
-                            <p> "Scantranx has really helped me in managing my business and track its growth. Scantranx is a great platform for any retail business." </p>
-                            <div class="customer_name">
-                                <h5>Bolaji Akintola</h5>
-                                <span>Owner, Divine African Mkt Canada</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single_customer">
-                        <div class="single_customer_img">
-                            <img src="{{asset('user/assets/images/home/customer/2.png')}} " alt="">
-                        </div> 
-                        <div class="customer_content">
-                            <p>"Earlier the stock management tool that we were using didn’t show us the data in real-time, it used to take one full day to fetch that data. With Restroworks, we can check this data in real time"</p>
-                            <div class="customer_name">
-                                <h5>Micheal Noah</h5>
-                                <span>CEO & Co-founder, Taco Bell Pvt Ltd.</span>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="single_customer">
-                        <div class="single_customer_img">
-                            <img src="{{asset('user/assets/images/home/customer/1.png')}} " alt="">
-                        </div> 
-                        <div class="customer_content">
-                            <p>"The best platform to manage all restaurant POS in one place. Very user-friendly and easily operative software. Provides all types of required data and reports in real-time that helps a lot in analyzing."</p>
-                            <div class="customer_name">
-                                <h5>Henry Jack</h5>
-                                <span>Senior Manage IT, Belgian Waffer Co.</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single_customer">
-                        <div class="single_customer_img">
-                            <img src="{{asset('user/assets/images/home/customer/2.png')}} " alt="">
-                        </div> 
-                        <div class="customer_content">
-                            <p>"Earlier the stock management tool that we were using didn’t show us the data in real-time, it used to take one full day to fetch that data. With Restroworks, we can check this data in real time."</p>
-                            <div class="customer_name">
-                                <h5>Micheal Noah</h5>
-                                <span>CEO & Co-founder, Taco Bell Pvt Ltd.</span>
-                            </div>
-                        </div>
-                    </div> 
+                    @endforeach 
                 </div>
             </div>
         </section>
@@ -323,258 +266,23 @@
                 </div>
 
                 <div class="question_accordion">
-                    <div class="accordion" id="accordionExample">
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                What is Scantranx ?
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                            <p>Scantranx is a cloud based Inventory management, Point of Sales (POS) and eCommerce solution designed to effectively and efficiently manage your inventory operations and sales transactions. It works optimally for both single and multiple sales channels. Whether it is Online Store only, multiple physical stores or a combination of physical and online sales channels. </p>
+                    <div class="accordion" id="faqAccordion">
+                        @foreach($faq as $item)
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading{{ $item->id }}">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ $item->id }}" aria-expanded="true" aria-controls="collapse{{ $item->id }}">
+                                        {{ $item->title }}
+                                    </button>
+                                </h2>
+                                <div id="collapse{{ $item->id }}" class="accordion-collapse collapse" aria-labelledby="heading{{ $item->id }}" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        {{ $item->answer }}
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        </div>
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                What hardware do you provide for retailers?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>We can provide you with a complete desktop POS system i.e. Cash register, Thermal printer, Customer Display Unit, Laser Scanner, Barcode Printer and Cash Box or parts.</p>
-                            </div>
-                        </div>
-                        </div>
-
-                        
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingThree">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Can I use my hardware with the Scantranx POS application?
-                            </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Yes, you can but to get the best user experience we recommend the Scantranx Hardware.</p>
-                            </div>
-                        </div>
-                        </div>
-                        
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFour">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                How do I accept payment from my customers?
-                            </button>
-                        </h2>
-                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>You can accept payment through bank transfer, credit card, Cash, Gift cards, Coupons. Possible payment mode is a function of the platform of transaction.</p>
-                            </div>
-                        </div>
-                        </div>
-                        
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingFive">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                I want an Online store only. Can I use Scantranx?
-                            </button>
-                        </h2>
-                        <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Absolutely, Scantranx has an e-commerce platform with professional website templates to ensure you set up your online store as quickly as possible. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingSix">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                                Is there a limit to the number of POS system I can use with my account?
-                            </button>
-                        </h2>
-                        <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Yes, the number of POS you can use depends on your service subscription plan. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingSeven">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                                Can I still use Scantranx POS during internet down-time ?
-                            </button>
-                        </h2>
-                        <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Yes, Scantranx POS has an offline mode that enables you to continue your transaction whenever there is internet downtime, once internet connection is restored, all data would be synchronized.  </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="headingEight">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                                All I need is to manage my inventory, can Scantranx work for me ?
-                            </button>
-                        </h2>
-                        <div id="collapseEight" class="accordion-collapse collapse" aria-labelledby="headingEight" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Yes, it can perfectly work for you. You can decide to sign up and not install the point of sale application software if you do not need it. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_9">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_9" aria-expanded="false" aria-controls="collapse_9">
-                                How much does it cost to Start using to Scantranx?
-                            </button>
-                        </h2>
-                        <div id="collapse_9" class="accordion-collapse collapse" aria-labelledby="heading_9" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>On sign-up, you would be given full free access based on your selected package for 14 days. Subsequently, you would be required to pay a monthly access fee of $19.99, $49.99 and $99.99 for the BASIC, STARTER and PRO plan respectively. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_10">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_10" aria-expanded="false" aria-controls="collapse_10">
-                                On sign-up, you would be given full free access based on your selected package for 14 days. Subsequently, you would be required to pay a monthly access fee of $19.99, $49.99 and $99.99 for the BASIC, STARTER and PRO plan respectively. 
-                            </button>
-                        </h2>
-                        <div id="collapse_10" class="accordion-collapse collapse" aria-labelledby="heading_10" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Scantranx is available in three subscription packages: BASIC STARTER, and PRO Packages at $19.99, $49.99 and $49 respectively. We also provide custom service which works on special terms and conditions. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_11">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_11" aria-expanded="false" aria-controls="collapse_11">
-                                Can Scantranx manage more than one physical store ?
-                            </button>
-                        </h2>
-                        <div id="collapse_11" class="accordion-collapse collapse" aria-labelledby="heading_11" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Yes, Scantranx is built to effectively manage multiple physical stores and its also a great choice in managing single store. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_12">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_12" aria-expanded="false" aria-controls="collapse_12">
-                                What if I sell through my physical store, e-commerce website and/or a mobile commerce application
-                            </button>
-                        </h2>
-                        <div id="collapse_12" class="accordion-collapse collapse" aria-labelledby="heading_12" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Scantranx would help you eliminate the stress of maintaining different inventory for your different sales channels, this means you can centrally and effectively manage all your sales channels with Scantranx. This is one of the ways we help retailers to save stress, money and time. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_13">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_13" aria-expanded="false" aria-controls="collapse_13">
-                                My business operates several locations/branches with a central office, would Scantranx be sufficient for our inventory operations ?
-                            </button>
-                        </h2>
-                        <div id="collapse_13" class="accordion-collapse collapse" aria-labelledby="heading_13" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Yes, Scantranx can centrally manage all your business locations including warehouse in an efficient and effective way. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_14">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_14" aria-expanded="false" aria-controls="collapse_14">
-                                How do I easily migrate my product and customer data to Scantranx ?
-                            </button>
-                        </h2>
-                        <div id="collapse_14" class="accordion-collapse collapse" aria-labelledby="heading_14" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>You can migrate your inventory easily by simply importing your item list in excel format. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_15">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_15" aria-expanded="false" aria-controls="collapse_15">
-                                Can I change my subscription plan anytime I deem necessary ?
-                            </button>
-                        </h2>
-                        <div id="collapse_15" class="accordion-collapse collapse" aria-labelledby="heading_15" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Yes, you have the liberty to either upgrade your subscription plan anytime you need to.</p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_16">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_16" aria-expanded="false" aria-controls="collapse_16">
-                                If I operate a seasonal business can I halt subscription and still keep my data till next business season?
-                            </button>
-                        </h2>
-                        <div id="collapse_16" class="accordion-collapse collapse" aria-labelledby="heading_16" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>You need to make a special request to our customer support service which would be treated as required. Our system keeps inactive account record for a stipulated period.  </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_17">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_17" aria-expanded="false" aria-controls="collapse_17">
-                                Is Scantranx compatible with my already existing hardware ?
-                            </button>
-                        </h2>
-                        <div id="collapse_17" class="accordion-collapse collapse" aria-labelledby="heading_17" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>Scantranx is compatible with most hardware, giving you one time seamless connection to your system unit and peripherals. However, you can check our recommended hardware with required minimum specification. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_18">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_18" aria-expanded="false" aria-controls="collapse_18">
-                                Can I use Scantranx on my tablet and mobile phone ?
-                            </button>
-                        </h2>
-                        <div id="collapse_18" class="accordion-collapse collapse" aria-labelledby="heading_18" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>You can easily access your back office using any hardware type, tablet, minimum of 7" tablet and your computer systems. While transaction checkouts can be effectively carried out using a tablet or computer system. </p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading_19">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_19" aria-expanded="false" aria-controls="collapse_19">
-                                How do I accept payment from my customers during checkout ?
-                            </button>
-                        </h2>
-                        <div id="collapse_19" class="accordion-collapse collapse" aria-labelledby="heading_19" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                                <p>You can accept payment through bank transfer, credit card, Cash, Gift cards, Coupons. Possible payment mode is a function of the platform of transaction. </p>
-                            </div>
-                        </div>
-                        </div>
-                        
-
+                        @endforeach
                     </div>
+                    
                 </div>
             </div>
         </section> 
