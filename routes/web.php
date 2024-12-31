@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\ResellerController;
 use App\Http\Controllers\Admin\TestimonialController;
 use App\Http\Controllers\User\ContactController;
 use App\Http\Controllers\User\UserController;
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route; 
 
 use Illuminate\Http\Request;
 
@@ -30,6 +30,7 @@ Route::get('/home-v2', [UserController::class, 'homev2'])->name('user.homev2'); 
 Route::get('/about', [UserController::class, 'about'])->name('user.about'); 
 Route::get('/api-integration', [UserController::class, 'api_integration'])->name('user.api.integration'); 
 Route::get('/blog', [UserController::class, 'blog'])->name('user.blog'); 
+Route::get('/blog/single/{id}', [UserController::class, 'blog_single'])->name('user.single.blog'); 
 Route::get('/contact', [UserController::class, 'contact'])->name('user.contact'); 
 Route::get('/features', [UserController::class, 'features'])->name('user.features'); 
 Route::get('/hardware', [UserController::class, 'hardware'])->name('user.hardware'); 
@@ -39,7 +40,9 @@ Route::get('/privecy-policy', [UserController::class, 'privecy_policy'])->name('
 Route::get('/quickbook-disconnect', [UserController::class, 'quickbook_disconnect'])->name('user.quickbook.disconnect'); 
 Route::get('/quickbook', [UserController::class, 'quickbook'])->name('user.quickbook'); 
 Route::get('/reseller', [UserController::class, 'reseller'])->name('user.reseller'); 
+Route::post('/reseller/store', [ResellerController::class, 'store'])->name('reseller.store');
 Route::get('/stripe', [UserController::class, 'stripe'])->name('user.stripe'); 
+Route::post('/ebook/store', [EbookDownloadController::class, 'store'])->name('ebook.store');
 
 // Website  
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');

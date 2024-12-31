@@ -47,47 +47,45 @@
                 <p>Partner with us to grow your business by reselling our technology worldwide.</p>
             </div>
             <div class="partner_form">
-                <form action="#">
+                <form action="{{ route('reseller.store') }}" id="reseller_form" method="POST">
+                    @csrf
                     <div class="login_form"> 
                         <div class="form_group">
-                            <input type="text" placeholder="Account name">
+                            <input type="text" name="account_name" placeholder="Account name" required>
                             <i class="fa-regular fa-user"></i> 
                         </div> 
                         <div class="form_group">
-                            <input type="text" placeholder="Company name">
+                            <input type="text" name="company_name" placeholder="Company name" required>
                             <i class="fa-regular fa-envelope"></i>
                         </div>  
                         <div class="form_group">
-                            <input type="text" placeholder="Phone number">
+                            <input type="text" name="phone_number" placeholder="Phone number" required>
                             <i class="fa-solid fa-phone"></i>
                         </div> 
                         <div class="form_group">
-                            <input type="email" placeholder="Enter email">
+                            <input type="email" name="email" placeholder="Enter email" required>
                             <i class="fa-regular fa-envelope"></i>
                         </div> 
                         <div class="form_group"> 
-                            <select name="" id="">
-                                <option value="Country">I want to i.e Resell Scantranx solutions</option> 
-                                <option value="Country">I want to i.e Resell Scantranx solutions</option> 
-                                <option value="Country">I want to i.e Resell Scantranx solutions</option> 
-                                <option value="Country">I want to i.e Resell Scantranx solutions</option> 
-                                <option value="Country">I want to i.e Resell Scantranx solutions</option> 
+                            <select name="reason" required>
+                                <option value="">Select a reason</option>
+                                <option value="I want to resell Scantranx solutions">I want to resell Scantranx solutions</option>
+                                <option value="Other">Other</option>
                             </select>
                             <i class="fa-solid fa-location-dot"></i>
                         </div>
                         <div class="form_group"> 
-                            <select name="" id="">
-                                <option value="Country">Country</option>
-                                <option value="bangladesh">bangladesh</option>
-                                <option value="bangladesh">bangladesh</option>
-                                <option value="bangladesh">bangladesh</option>
-                                <option value="bangladesh">bangladesh</option>
-                                <option value="bangladesh">bangladesh</option>
+                            <select name="country" required>
+                                <option value="">Select a country</option>
+                                <option value="Bangladesh">Bangladesh</option>
+                                <option value="USA">USA</option>
+                                <option value="UK">UK</option>
+                                <option value="India">India</option>
                             </select>
                             <i class="fa-solid fa-location-dot"></i>
                         </div> 
-                        <div class="btn_login">
-                            <button type="submit" class="btn_2 free_demo_btn">Submit <i class="fa-solid fa-arrow-right"></i></button>  
+                        <div class="btn_login">  
+                            <button type="button"  class="btn_2 free_demo_btn" data-file='true' id="reseller_btn" onclick="_run(this)" data-el="fg" data-form="reseller_form" data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" data-callback="reseller_callback" data-btnid="reseller_btn">Submit <i class="fa-solid fa-arrow-right"></i></button>
                         </div>
                     </div>
                 </form>
@@ -128,16 +126,16 @@
     <script>  
 
 
-        function blog_post_callback(data){
+        function reseller_callback(data){
             if (data.status == true) {
                 notify('success', data.message, 'Success');
-                $('#blog_post_form')[0].reset();
+                $('#reseller_form')[0].reset();
                 setTimeout(function() {
                     window.location.reload(); 
                 }, 1000 * 2);
             } else {
                 notify('error', data.message, 'Error');
-                $.validator("blog_post_form", data.errors);
+                $.validator("reseller_form", data.errors);
             }
         } 
 

@@ -64,7 +64,7 @@
                             <div class="feature_text">
                                 <a href="#" class="btn_2">{{ $featuredBlog->category }}</a>
                                 <span>{{ $featuredBlog->created_at->format('d M, Y') }} - 5min Reading</span>
-                                <a class="link_blog">{{ $featuredBlog->title }}</a>
+                                <a href="{{ route('user.single.blog', $featuredBlog->id) }}" class="link_blog">{{ $featuredBlog->title }}</a>
                                 <p>{{ $featuredBlog->description }}</p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                                 </div>
                                 <div class="feature_text">
                                     <span>{{ $item->created_at->format('d M, Y') }} - 5min Reading</span>
-                                    <a href="#" class="link_blog_item">{{ $item->title }}</a>
+                                    <a href="{{ route('user.single.blog', $item->id) }}"  class="link_blog_item">{{ $item->title }}</a>
                                     <p>{{ Str::limit($item->description, 100) }}</p> <!-- Limit description to 100 characters -->
                                 </div>
                             </div>

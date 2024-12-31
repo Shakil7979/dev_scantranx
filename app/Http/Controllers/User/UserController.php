@@ -41,6 +41,11 @@ class UserController extends Controller
         $blog = Blog::orderBy('created_at', 'desc')->get(); 
         return view('user.blog', compact('blog'));
     }
+    public function blog_single($id)
+    {     
+        $blog = Blog::find($id); 
+        return view('user.blog-details', compact('blog'));
+    }
     public function contact()
     {
         return view('user.contact');

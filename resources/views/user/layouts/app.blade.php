@@ -347,38 +347,45 @@
                         <button class="close_modal"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                     <div class="modal_form">
-                        <form action="#">
+                        <form action="{{ route('ebook.store') }}" id="ebook_form" method="POST">
+                            @csrf
                             <div class="login_form"> 
                                 <div class="form_group">
-                                    <input type="text" placeholder="Full name">
+                                    <input type="text" name="full_name" placeholder="Full name">
                                     <i class="fa-regular fa-user"></i> 
                                 </div> 
                                 <div class="form_group">
-                                    <input type="text" placeholder="Business name">
+                                    <input type="text" name="business_name" placeholder="Business name">
                                     <i class="fa-regular fa-envelope"></i>
                                 </div> 
                                 <div class="form_group"> 
-                                    <select name="" id="">
-                                        <option value="Country">Position i.e Business Owner</option> 
-                                        <option value="Country">Position i.e Business Owner</option> 
-                                        <option value="Country">Position i.e Business Owner</option> 
-                                        <option value="Country">Position i.e Business Owner</option> 
+                                    <select name="position">
+                                        <option value="Business Owner">Business Owner</option> 
+                                        <option value="Manager">Manager</option> 
+                                        <option value="Employee">Employee</option> 
+                                        <option value="Other">Other</option> 
                                     </select>
                                     <i class="fa-solid fa-location-dot"></i>
                                 </div> 
                                 <div class="form_group">
-                                    <input type="text" placeholder="Phone number">
+                                    <input type="text" name="phone_number" placeholder="Phone number">
                                     <i class="fa-solid fa-phone"></i>
                                 </div> 
                                 <div class="form_group">
-                                    <input type="email" placeholder="Enter email">
+                                    <input type="email" name="email" placeholder="Enter email">
                                     <i class="fa-regular fa-envelope"></i>
                                 </div>  
-                                <div class="btn_login">
-                                    <button type="submit" class="btn_2 free_demo_btn">Download E-Book<i class="fa-solid fa-arrow-right"></i></button></p>
+                                <div class="btn_login"> 
+                                    <button type="button" class="btn_2 free_demo_btn" data-file="true" id="ebook_btn" 
+                                        onclick="_run(this)" data-el="fg" data-form="ebook_form" 
+                                        data-loading="<div class='spinner-border spinner-border-sm' role='status'></div>" 
+                                        data-callback="ebook_callback" data-btnid="ebook_btn">
+                                        Download E-Book <i class="fa-solid fa-arrow-right"></i>
+                                    </button>
                                 </div>
                             </div>
                         </form>
+                        
                     </div> 
                 </div>
             </div>   
@@ -458,6 +465,19 @@
                 } else {
                     notify('error', data.message, 'Error');
                     $.validator("user_login_form", data.errors);
+                }
+            } 
+
+            function ebook_callback(data){
+                if (data.status == true) {
+                    notify('success', data.message, 'Success');
+                    $('#ebook_form')[0].reset();
+                    setTimeout(function() { 
+                        window.location.reload(); 
+                    }, 1000 * 2);
+                } else {
+                    notify('error', data.message, 'Error');
+                    $.validator("ebook_form", data.errors);
                 }
             } 
 
