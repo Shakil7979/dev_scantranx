@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="job_right_text">
-                    <p>{{ $job->applied_count ?? '0' }} Applied</p>
+                    <p>{{ $job->application_count  ?? '0' }} Applied</p>
                 </div> 
                 <div class="job_right_btn"> 
                     <button class="job_edit_delete_btn"><i class="fa-solid fa-ellipsis-vertical"></i></button>

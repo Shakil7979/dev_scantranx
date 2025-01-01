@@ -2,6 +2,21 @@
 @section('title', 'Job Details')
 @section('custom-css') 
 
+<style>
+    .d-none {
+        display: none;
+    }
+
+    .see-more-btn {
+        background: none;
+        border: none;
+        color: #007bff;
+        cursor: pointer;
+        text-decoration: underline;
+        padding: 0;
+    }
+
+</style>
 
 
 @endsection
@@ -19,10 +34,10 @@
                                 <div class="job_apply_head">
                                     <h3>{{ $job->job_title }}</h3>  
                                     <p>
-                                        @if($job->applications_count == 0)
+                                        @if($job_count == 0)
                                             0 Applied
                                         @else
-                                            {{ $job->applications_count }} Applied
+                                            {{ $job_count }} Applied
                                         @endif
                                     </p>
                                 </div>
@@ -73,36 +88,56 @@
                     <div class="apply_title">
                         <h3>Software Engineer</h3>
                         <p>
-                            @if($job->applications_count == 0)
+                            @if($job_count == 0)
                                 0 Applied
                             @else
-                                {{ $job->applications_count }} Applied
+                                {{ $job_count }} Applied
                             @endif
                         </p>
-                    </div>
+                    </div> 
+                    
                     <div class="apply_candidate">
-                        <div class="single_candidate">
-                            <div class="single_candidate_header">
-                                <img src="{{asset('admin/assets/images/job/candidate/user.png')}}" alt="">
-                                <div class="candidate_info">
-                                    <h3>Aqib Javid</h3>
-                                    <p>Toronto, Canada</p>
-                                    <p>aqib.official@gmail.com</p>
+                        @foreach ($applications as $application)
+                            <div class="single_candidate">
+                                <div class="single_candidate_header">
+                                    <img src="{{ asset('admin/assets/images/job/candidate/user.png') }}" alt="">
+                                    <div class="candidate_info">
+                                        <h3>{{ $application->full_name }}</h3>
+                                        <p>{{ $application->location }}</p>
+                                        <p>{{ $application->email }}</p>
+                                    </div>
+                                </div> 
+                                <p>
+                                    @php
+                                        $words = explode(' ', $application->summary);
+                                    @endphp
+                                    @if (count($words) > 20)
+                                        <span class="summary-short">{{ implode(' ', array_slice($words, 0, 20)) }}...</span>
+                                        <span class="summary-full d-none">{{ $application->summary }}</span>
+                                        <button class="see-more-btn" onclick="toggleSummary(this)">See More</button>
+                                    @else
+                                        {{ $application->summary }}
+                                    @endif
+                                </p>
+                                <div class="candi_file">
+                                    <div class="candi_file_name">
+                                        <i class="fa-solid fa-file"></i>
+                                        <p>Resume</p>
+                                    </div> 
+                                    <button>
+                                        <a href="{{ asset($application->resume_path) }}" download>
+                                            <i class="fa-solid fa-download"></i>
+                                        </a>
+                                    </button>
+                                </div>
+                                <div class="apply_date">
+                                    <p>Applied: {{ $application->created_at->format('d M, Y') }}</p>
                                 </div>
                             </div>
-                            <p>I’m excited to apply for the Software Engineer position With a Bachelor’s in Computer Science and 5 years of experience in software development, including expertise in Java, C#, and database management, <button>See More</button></p>
-                            <div class="candi_file">
-                                <div class="candi_file_name">
-                                    <i class="fa-solid fa-file"></i>
-                                    <p>Resume</p>
-                                </div>
-                                <button><i class="fa-solid fa-download"></i></button>
-                            </div>
-                            <div class="apply_date">
-                                <p>Applied: 07 July, 2024</p>
-                            </div>
-                        </div> 
+                        @endforeach
                     </div>
+                    
+
                 </div>
             </div>
         </div>
@@ -115,6 +150,20 @@
  
 
     <script> 
+        function toggleSummary(button) {
+            const summaryShort = button.previousElementSibling.previousElementSibling;
+            const summaryFull = button.previousElementSibling;
+
+            if (summaryFull.classList.contains('d-none')) {
+                summaryShort.classList.add('d-none');
+                summaryFull.classList.remove('d-none');
+                button.textContent = 'See Less';
+            } else {
+                summaryShort.classList.remove('d-none');
+                summaryFull.classList.add('d-none');
+                button.textContent = 'See More';
+            }
+        }
 
     </script>
 

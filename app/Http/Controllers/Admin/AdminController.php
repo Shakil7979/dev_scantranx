@@ -4,12 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Job;
+use App\Models\JobApplication;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class AdminController extends Controller
 {
+    // Show the admin login form
+    public function admin_redirect()
+    {
+        return redirect()->route('admin.login');
+    }
+
     // Show the admin login form
     public function showLoginForm()
     {
@@ -56,7 +63,11 @@ class AdminController extends Controller
     // // Show the admin dashboard
     public function dashboard(Request $request)
     {
-        $jobs = Job::all(); // Fetch all jobs
+        // $jobs = Job::all(); 
+        $jobs = Job::all()->map(function ($job) {
+            $job->application_count = JobApplication::where('job_id', $job->id)->count();
+            return $job;
+        });
         return view('admin.dashboard', compact('jobs')); 
     }
 

@@ -35,67 +35,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><p>1</p></td>
-                        <td><p>Aqib Javid</p></td>
-                        <td><p>aqib.official@gmail.com</p></td>
-                        <td><p>+18062040582</p></td>
-                        <td><p>ABC Company</p></td>
-                        <td><p>United State</p></td>
-                        <td><p>Resell Scantranx Solutions</p></td>
-                        <td><button class="btn_1">View</button></td> 
-                    </tr>
-                    <tr>
-                        <td><p>2</p></td>
-                        <td><p>Aqib Javid</p></td>
-                        <td><p>aqib.official@gmail.com</p></td>
-                        <td><p>+18062040582</p></td>
-                        <td><p>ABC Company</p></td>
-                        <td><p>Canada</p></td>
-                        <td><p>Refer Customer to Scantranx</p></td>
-                        <td><button class="btn_1">View</button></td> 
-                    </tr>
-                    <tr>
-                        <td><p>3</p></td>
-                        <td><p>Aqib Javid</p></td>
-                        <td><p>aqib.official@gmail.com</p></td>
-                        <td><p>+18062040582</p></td>
-                        <td><p>ABC Company</p></td>
-                        <td><p>United State</p></td>
-                        <td><p>Resell Scantranx Solutions</p></td>
-                        <td><button class="btn_1">View</button></td> 
-                    </tr>
-                    <tr>
-                        <td><p>4</p></td>
-                        <td><p>Aqib Javid</p></td>
-                        <td><p>aqib.official@gmail.com</p></td>
-                        <td><p>+18062040582</p></td>
-                        <td><p>ABC Company</p></td>
-                        <td><p>Canada</p></td>
-                        <td><p>Refer Customer to Scantranx</p></td>
-                        <td><button class="btn_1">View</button></td> 
-                    </tr>
-                    <tr>
-                        <td><p>5</p></td>
-                        <td><p>Aqib Javid</p></td>
-                        <td><p>aqib.official@gmail.com</p></td>
-                        <td><p>+18062040582</p></td>
-                        <td><p>ABC Company</p></td>
-                        <td><p>United State</p></td>
-                        <td><p>Resell Scantranx Solutions</p></td>
-                        <td><button class="btn_1">View</button></td> 
-                    </tr>
-                    <tr>
-                        <td><p>6</p></td>
-                        <td><p>Aqib Javid</p></td>
-                        <td><p>aqib.official@gmail.com</p></td>
-                        <td><p>+18062040582</p></td>
-                        <td><p>ABC Company</p></td>
-                        <td><p>Canada</p></td>
-                        <td><p>Refer Customer to Scantranx</p></td>
-                        <td><button class="btn_1">View</button></td> 
-                    </tr>
-                     
+                    @foreach($reseller as $resell)
+                        <tr>
+                            <td><p>{{ $loop->iteration }}</p></td>
+                            <td><p>{{ $resell->account_name }}</p></td>
+                            <td><p>{{ $resell->email }}</p></td>
+                            <td><p>{{ $resell->phone_number }}</p></td>
+                            <td><p>{{ $resell->company_name }}</p></td>
+                            <td><p>{{ $resell->country }}</p></td>
+                            <td><p>{{ $resell->reason }}</p></td>
+                            <td><button class="btn_1">View</button></td>
+                        </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

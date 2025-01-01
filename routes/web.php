@@ -58,7 +58,13 @@ Route::get('/user-get-job-info/{id}', [JobController::class, 'job_get_info']);
 
 
 // Admin Route Here   
+
+// Route::get('/admin', [AdminController::class, 'admin_redirect']);
+
 Route::prefix('admin')->group(function () {
+    Route::get('/', function () {
+        return redirect()->route('admin.login');
+    });
     Route::get('/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login.post');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');

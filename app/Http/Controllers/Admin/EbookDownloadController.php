@@ -11,9 +11,8 @@ class EbookDownloadController extends Controller
 {
     public function show()
     {   
-        // $contacts  = ContactMessage::all();    
-        // return view('admin.contact' , compact('contacts'));
-        return view('admin.ebook-download');
+        $ebook  = Ebook::all();    
+        return view('admin.ebook-download' , compact('ebook')); 
     } 
 
     public function store(Request $request)

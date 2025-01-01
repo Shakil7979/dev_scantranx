@@ -144,10 +144,13 @@ class JobController extends Controller
     public function show($id)
     {
         // Find the job by its ID, or return a 404 if not found
-        $job = Job::findOrFail($id);
+        $job = Job::findOrFail($id); 
+        $job_count = JobApplication::where('job_id', $id)->count(); 
+        // Fetch all applications for the job
+        $applications = JobApplication::where('job_id', $id)->get();
 
-        // Return the job details view and pass the job data
-        return view('admin.job_details', compact('job'));
+        // Pass the job, application count, and applications to the view
+        return view('admin.job_details', compact('job', 'job_count', 'applications'));
     }
  
     public function applyForJob(Request $request)

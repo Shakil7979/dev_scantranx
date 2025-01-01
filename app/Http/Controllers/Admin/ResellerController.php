@@ -11,9 +11,8 @@ class ResellerController extends Controller
 {
     public function show()
     {   
-        // $contacts  = ContactMessage::all();    
-        // return view('admin.contact' , compact('contacts'));
-        return view('admin.reseller');
+        $reseller  = Reseller::all();    
+        return view('admin.reseller' , compact('reseller')); 
     } 
 
 

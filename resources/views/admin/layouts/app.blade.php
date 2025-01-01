@@ -73,7 +73,10 @@
             <div class="menu">
                 <ul>
                     <li>
-                        <a class="{{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                        {{-- <a class="{{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
+                            <img src="assets/images/sidebar/Search.png" alt="">Jobs
+                        </a> --}}
+                        <a class="{{ in_array(Route::currentRouteName(), ['admin.dashboard', 'job.show']) ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
                             <img src="assets/images/sidebar/Search.png" alt="">Jobs
                         </a>
                     </li>
