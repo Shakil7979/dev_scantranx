@@ -74,40 +74,40 @@
                 <ul>
                     <li>
                         {{-- <a class="{{ Route::currentRouteName() == 'admin.dashboard' ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                            <img src="assets/images/sidebar/Search.png" alt="">Jobs
+                            <img src="{{asset('admin/assets/images/sidebar/Search.png')}}" alt="">Jobs
                         </a> --}}
                         <a class="{{ in_array(Route::currentRouteName(), ['admin.dashboard', 'job.show']) ? 'active' : '' }}" href="{{ route('admin.dashboard') }}">
-                            <img src="assets/images/sidebar/Search.png" alt="">Jobs
+                            <img src="{{asset('admin/assets/images/sidebar/Search.png')}}" alt="">Jobs
                         </a>
                     </li>
                     <li>
                         <a class="{{ Route::currentRouteName() == 'blog.show' ? 'active' : '' }}" href="{{ route('blog.show') }}">
-                            <img src="assets/images/sidebar/Paper.png" alt="">Blog
+                            <img src="{{asset('admin/assets/images/sidebar/Paper.png')}}" alt="">Blog
                         </a>
                     </li>
                     <li>
                         <a class="{{ Route::currentRouteName() == 'faq.show' ? 'active' : '' }}" href="{{ route('faq.show') }}">
-                            <img src="assets/images/sidebar/Danger Circle.png" alt="">FAQ's
+                            <img src="{{asset('admin/assets/images/sidebar/Danger Circle.png')}}" alt="">FAQ's
                         </a>
                     </li>
                     <li>
                         <a class="{{ Route::currentRouteName() == 'testimonial.show' ? 'active' : '' }}" href="{{ route('testimonial.show') }}">
-                            <img src="assets/images/sidebar/Star.png" alt="">Testimonial
+                            <img src="{{asset('admin/assets/images/sidebar/Star.png')}}" alt="">Testimonial
                         </a>
                     </li>
                     <li>
                         <a class="{{ Route::currentRouteName() == 'contact.show' ? 'active' : '' }}" href="{{ route('contact.show') }}">
-                            <img src="assets/images/sidebar/Call.png" alt="">Contact form
+                            <img src="{{asset('admin/assets/images/sidebar/Call.png')}}" alt="">Contact form
                         </a>
                     </li>
                     <li>
                         <a class="{{ Route::currentRouteName() == 'reseller.show' ? 'active' : '' }}" href="{{ route('reseller.show') }}">
-                            <img src="assets/images/sidebar/Profile.png" alt="">Reseller
+                            <img src="{{asset('admin/assets/images/sidebar/Profile.png')}}" alt="">Reseller
                         </a>
                     </li>
                     <li>
                         <a class="{{ Route::currentRouteName() == 'ebook.download.show' ? 'active' : '' }}" href="{{ route('ebook.download.show') }}">
-                            <img src="assets/images/sidebar/Download.png" alt="">E-book download
+                            <img src="{{asset('admin/assets/images/sidebar/Download.png')}}" alt="">E-book download
                         </a>
                     </li>
                 </ul>

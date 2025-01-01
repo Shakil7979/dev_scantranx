@@ -724,10 +724,16 @@ a:hover{
 	color: #052145;
 }
 
+.no_apply_text {
+	text-align: center;
+	margin-top: 50px;
+}
+
 .job_requirements_box > a {
 	display: flex;
 	align-items: center;
 	gap: 10px;
+	display: inline-block;
 }
 
 .job_ul ul {

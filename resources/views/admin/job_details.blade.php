@@ -97,44 +97,49 @@
                     </div> 
                     
                     <div class="apply_candidate">
-                        @foreach ($applications as $application)
-                            <div class="single_candidate">
-                                <div class="single_candidate_header">
-                                    <img src="{{ asset('admin/assets/images/job/candidate/user.png') }}" alt="">
-                                    <div class="candidate_info">
-                                        <h3>{{ $application->full_name }}</h3>
-                                        <p>{{ $application->location }}</p>
-                                        <p>{{ $application->email }}</p>
-                                    </div>
-                                </div> 
-                                <p>
-                                    @php
-                                        $words = explode(' ', $application->summary);
-                                    @endphp
-                                    @if (count($words) > 20)
-                                        <span class="summary-short">{{ implode(' ', array_slice($words, 0, 20)) }}...</span>
-                                        <span class="summary-full d-none">{{ $application->summary }}</span>
-                                        <button class="see-more-btn" onclick="toggleSummary(this)">See More</button>
-                                    @else
-                                        {{ $application->summary }}
-                                    @endif
-                                </p>
-                                <div class="candi_file">
-                                    <div class="candi_file_name">
-                                        <i class="fa-solid fa-file"></i>
-                                        <p>Resume</p>
+                        @if ($applications->isEmpty())
+                            <p class="no_apply_text">No applications found.</p>
+                        @else
+                            @foreach ($applications as $application)
+                                <div class="single_candidate">
+                                    <div class="single_candidate_header">
+                                        <img src="{{ asset('admin/assets/images/job/candidate/user.png') }}" alt="">
+                                        <div class="candidate_info">
+                                            <h3>{{ $application->full_name }}</h3>
+                                            <p>{{ $application->location }}</p>
+                                            <p>{{ $application->email }}</p>
+                                        </div>
                                     </div> 
-                                    <button>
-                                        <a href="{{ asset($application->resume_path) }}" download>
-                                            <i class="fa-solid fa-download"></i>
-                                        </a>
-                                    </button>
+                                    <p>
+                                        @php
+                                            $words = explode(' ', $application->summary);
+                                        @endphp
+                                        @if (count($words) > 20)
+                                            <span class="summary-short">{{ implode(' ', array_slice($words, 0, 20)) }}...</span>
+                                            <span class="summary-full d-none">{{ $application->summary }}</span>
+                                            <button class="see-more-btn" onclick="toggleSummary(this)">See More</button>
+                                        @else
+                                            {{ $application->summary }}
+                                        @endif
+                                    </p>
+                                    <div class="candi_file">
+                                        <div class="candi_file_name">
+                                            <i class="fa-solid fa-file"></i>
+                                            <p>Resume</p>
+                                        </div> 
+                                        <button>
+                                            <a href="{{ asset($application->resume_path) }}" download>
+                                                <i class="fa-solid fa-download"></i>
+                                            </a>
+                                        </button>
+                                    </div>
+                                    <div class="apply_date">
+                                        <p>Applied: {{ $application->created_at->format('d M, Y') }}</p>
+                                    </div>
                                 </div>
-                                <div class="apply_date">
-                                    <p>Applied: {{ $application->created_at->format('d M, Y') }}</p>
-                                </div>
-                            </div>
-                        @endforeach
+                            @endforeach
+                            
+                        @endif
                     </div>
                     
 
