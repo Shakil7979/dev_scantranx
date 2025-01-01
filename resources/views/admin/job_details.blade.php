@@ -86,7 +86,7 @@
             <div class="col-md-6">
                 <div class="job_applied_box">
                     <div class="apply_title">
-                        <h3>Software Engineer</h3>
+                        <h3>{{ $job->job_title }}</h3>
                         <p>
                             @if($job_count == 0)
                                 0 Applied
