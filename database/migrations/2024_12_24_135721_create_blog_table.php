@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('category');
             $table->text('description');
             $table->text('images')->nullable(); 
+            $table->text('image_path'); 
             $table->timestamps();
         });
     }

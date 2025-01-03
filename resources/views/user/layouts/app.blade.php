@@ -109,7 +109,7 @@
                         
                         <div class="header_login_btn">
                             <ul>
-                                <li>
+                                <li> 
                                     <!-- Show the Login button if the user is NOT logged in (with 'user' role) -->
                                     @if (!Auth::check() || Auth::user()->role != 'user')
                                     <button type="button" class="btn_1 desktop_show login_show_form">Login</button>
@@ -270,7 +270,7 @@
                     </div>
                     <div class="modal_form">
                         <form action="{{ route('user.registration') }}" id="user_registration_form" method="POST">
-                            @csrf
+                            @csrf 
                             <div class="login_form"> 
                                 <div class="form_group">
                                     <input type="text" name="account_name" placeholder="Account name">

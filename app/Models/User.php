@@ -25,8 +25,7 @@ class User extends Authenticatable
         'country',
         'phone_number',
         'plan',
-        'user_role',
-        'user_type',
+        'role', 
     ];
 
     /**

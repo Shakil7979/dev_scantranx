@@ -95,7 +95,8 @@ class UserController extends Controller
 
     // User Registraion 
     public function register(Request $request)
-    {
+    { 
+
         // Validation rules for the registration form
         $validator = Validator::make($request->all(), [
             'account_name' => 'required|string|max:255',
@@ -116,8 +117,7 @@ class UserController extends Controller
             ]);
         }
 
-        $account_name = $request->account_name.'.scantranx.com';
-
+        $account_name = $request->account_name.'.scantranx.com'; 
         // Create the user if validation passes
         $user = User::create([
             'name' => $account_name,
@@ -125,8 +125,7 @@ class UserController extends Controller
             'country' => $request->country,
             'phone_number' => $request->phone_number,
             'email' => $request->email, 
-            'user_role' => 'user', // Default user role
-            'user_type' => 'user', // Default user type 
+            'role' => "user",  
             'password' => Hash::make($request->input('password')),  
         ]);
 
