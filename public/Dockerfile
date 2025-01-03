@@ -3,14 +3,17 @@ FROM php:8.1-fpm
 # Set working directory
 WORKDIR /var/www
 
-# Install necessary dependencies
+# Update the apt repositories and install necessary dependencies
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
     zip \
     git \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && apt-get clean
+
+# Install PHP extensions
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd mbstring bcmath json curl
 
 # Install Composer
